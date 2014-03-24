@@ -2,5 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="D:/Databases/mysql-connector-java-5.1.29/mysql-connector-java-5.1.29/mysql-connector-java-5.1.29-bin.jar"/>
+	<classpathentry kind="lib" path="D:/Databases/mysql-connector-java-5.1.29/mysql-connector-java-5.1.29/src/lib/c3p0-0.9.1-pre6.jar"/>
+	<classpathentry kind="lib" path="D:/Databases/mysql-connector-java-5.1.29/mysql-connector-java-5.1.29/src/lib/c3p0-0.9.1-pre6.src.zip"/>
+	<classpathentry kind="lib" path="D:/Databases/mysql-connector-java-5.1.29/mysql-connector-java-5.1.29/src/lib/jboss-common-jdbc-wrapper.jar"/>
+	<classpathentry kind="lib" path="D:/Databases/mysql-connector-java-5.1.29/mysql-connector-java-5.1.29/src/lib/jboss-common-jdbc-wrapper-src.jar"/>
+	<classpathentry kind="lib" path="D:/Databases/mysql-connector-java-5.1.29/mysql-connector-java-5.1.29/src/lib/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
