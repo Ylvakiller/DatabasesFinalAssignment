@@ -1,9 +1,13 @@
+package interfaces;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JLabel;
+
 import java.awt.Button;
 import java.awt.Font;
 
@@ -12,7 +16,7 @@ public class Starter {
 
 	public static void main(String[] args){
 		JFrame jf = new JFrame("");
-		jf.setSize(252,351);
+		jf.setSize(250,351);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.getContentPane().setLayout(null);
 		
@@ -21,6 +25,7 @@ public class Starter {
 		DateChange.setHorizontalAlignment(SwingConstants.LEFT);
 		DateChange.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				DateChanger Date =new DateChanger();
 			}
 		});
 		DateChange.setBounds(0, 0, 115, 20);
@@ -138,10 +143,6 @@ public class Starter {
 		jf.getContentPane().add(button_11);
 		
 		jf.setVisible(true);
-		
-
-		
-
 		
 	}
 }
