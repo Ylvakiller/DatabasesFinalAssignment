@@ -33,7 +33,14 @@ public class DBCom {
 		
 	}
 	
-	public void AddData(String query){
+	public int AddData(String query)throws SQLException{
+		Statement temp = con.createStatement();
+		int LinesChanged = temp.executeUpdate(query);
+		temp.close();
+		return LinesChanged;
+		
+	}
+	public void CloseDB(){
 		
 	}
 

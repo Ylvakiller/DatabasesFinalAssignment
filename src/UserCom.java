@@ -9,6 +9,8 @@ public class UserCom {
 		// TODO Auto-generated method stub
 		
 		DataHandler Data = new DataHandler();
+		System.out.println("Welcome tot his database assignment program.");
+		System.out.println("At any time during the program you can enter q to stop the program");
 		
 	}
 
