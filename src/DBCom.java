@@ -1,6 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  * 
@@ -11,25 +9,31 @@ import java.sql.SQLException;
 
 
 
-public class DatabaseConnections {
+public class DBCom {
 	
 	private final String hostname = "jdbc:mysql://localhost/";
 	private final String dbName = "finalassignment";
 	private final String username = "root";
 	private final String password = "";
+	@SuppressWarnings("unused")
 	private Connection con;
 	/*
 	 * This Constructor will connect to the database, Therefore this is the only part that needs changing when switching databases
 	 */
-	public DatabaseConnections(){
+	public DBCom(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
+			@SuppressWarnings("unused")
 			Connection con = DriverManager.getConnection(hostname + dbName, username, password);	
 		}catch(Exception ex){
 			System.err.println(ex.getMessage());
 			System.out.close();
 		}
 		System.out.println("Succesfully connected");
+		
+	}
+	
+	public void AddData(String query){
 		
 	}
 
