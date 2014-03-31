@@ -25,7 +25,7 @@ public class Starter {
 		DateChange.setHorizontalAlignment(SwingConstants.LEFT);
 		DateChange.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				DateChanger Date =new DateChanger();
+				new DateChanger();
 			}
 		});
 		DateChange.setBounds(0, 0, 115, 20);

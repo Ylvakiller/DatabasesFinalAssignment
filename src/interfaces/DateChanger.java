@@ -2,36 +2,15 @@ package interfaces;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
 import TEMP.DBCom;
-
-import javax.swing.JComboBox;
-import javax.swing.JSpinner;
-
 import org.jdesktop.swingx.JXDatePicker;
-
-import java.io.*;
 import java.text.SimpleDateFormat;
-import java.awt.Choice;
-import java.awt.Font;
 import java.awt.Dimension;
-
-import org.jdesktop.swingx.JXLabel;
-import org.jdesktop.swingx.JXBusyLabel;
 import org.jdesktop.swingx.JXButton;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import org.jdesktop.swingx.JXErrorPane;
-import org.jdesktop.swingx.JXDialog;
 
-import javax.swing.JComponent;
-import javax.swing.JPanel;
-import javax.swing.JTextPane;
-
-import java.awt.TextArea;
-import java.awt.TextField;
 
 public class DateChanger {
 	private final JXDatePicker datePicker = new JXDatePicker();
