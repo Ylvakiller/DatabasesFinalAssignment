@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="D:/Databases/mysql-connector-java-5.1.29/mysql-connector-java-5.1.29/src/lib/jboss-common-jdbc-wrapper.jar"/>
 	<classpathentry kind="lib" path="D:/Databases/mysql-connector-java-5.1.29/mysql-connector-java-5.1.29/src/lib/jboss-common-jdbc-wrapper-src.jar"/>
 	<classpathentry kind="lib" path="D:/Databases/mysql-connector-java-5.1.29/mysql-connector-java-5.1.29/src/lib/slf4j-api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="D:/Databases/eclipse-java-kepler-SR2-win32-x86_64/swingx-all-1.6.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

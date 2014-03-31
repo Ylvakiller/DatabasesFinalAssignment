@@ -62,7 +62,7 @@ public class Starter {
 		button_1.setBounds(10, 63, 214, 22);
 		jf.getContentPane().add(button_1);
 		
-		Button button_2 = new Button("Kill a friend");
+		Button button_2 = new Button("Deactivate a friend");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -86,7 +86,7 @@ public class Starter {
 		button_4.setBounds(10, 129, 214, 22);
 		jf.getContentPane().add(button_4);
 		
-		Button button_5 = new Button("See what a friend need to pay");
+		Button button_5 = new Button("See what a friend needs to pay");
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}

@@ -32,9 +32,8 @@ public class DBCom {
 		return LinesChanged;
 		
 	}
-	public void CloseDB(){
-		
-	}
+	
+	
 	public String GetDateStorred(){
 		
 		String date = "";
@@ -47,12 +46,29 @@ public class DBCom {
 			ResultSet dbDate = getDateStatement.executeQuery(querry);
 			dbDate.next();
 			date = dbDate.getString(1);
+			dbDate.close();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
 		this.close();
 		return date;
 		
+	}
+	public boolean SetDateStorred(String temp){
+		this.connect();
+		System.out.println(temp);
+		String querry = "INSERT INTO date (`date`)VALUES('" + temp + "')";
+		System.out.println(querry);
+		try{
+			Statement setDateStatement = con.createStatement();
+			setDateStatement.executeUpdate(querry);
+			setDateStatement.close();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+		
+		return true;
 	}
 	
 	private void close() {
