@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-
 public class DateChanger {
 	private final JXDatePicker datePicker = new JXDatePicker();
 	String uDate = "Incorrectly Entered";
@@ -105,5 +104,4 @@ public class DateChanger {
 		jf.setVisible(true);
 
 	}
-	
 }
