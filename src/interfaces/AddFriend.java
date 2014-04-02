@@ -1,6 +1,5 @@
 package interfaces;
 import javax.swing.JFrame;
-import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
 import java.awt.event.ActionListener;
@@ -8,15 +7,12 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JLabel;
 
-import java.awt.Button;
-import java.awt.Font;
 
 import org.jdesktop.swingx.JXLabel;
 import org.jdesktop.swingx.JXTextField;
 
 import javax.swing.JTextField;
 
-import org.jdesktop.swingx.painter.PinstripePainter;
 import org.jdesktop.swingx.JXDatePicker;
 
 import java.awt.Color;
@@ -24,16 +20,19 @@ import java.text.SimpleDateFormat;
 
 import org.jdesktop.swingx.JXButton;
 import org.jdesktop.swingx.JXTextArea;
-import java.awt.event.InputMethodListener;
-import java.awt.event.InputMethodEvent;
+
+import TEMP.DBCom;
+
 
 
 public class AddFriend {
 	private static JTextField Email;
 	private static String Nickname, EmailAddress, BirthDay;
 	private static Boolean a, b, c;
+	final static DBCom con = new DBCom();
 	
 	public static void main(String[] args){
+		final JXTextArea Output = new JXTextArea();
 		a = false;
 		b = false;
 		c = false;
@@ -48,6 +47,15 @@ public class AddFriend {
 		jf.getContentPane().add(lblWelcomeToThis);
 		
 		final JXButton btnAddThisFriend = new JXButton();
+		btnAddThisFriend.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (con.GetDubplicateName(Nickname)){
+					Output.append("Name already found, failed to add friend");
+				}else if(con.GetDuplicateEmail(EmailAddress)){
+					Output.append("Email already found, failed to add friend");
+				}
+			}
+		});
 		btnAddThisFriend.setText("Add this friend!");
 		btnAddThisFriend.setBounds(10, 113, 260, 25);
 		btnAddThisFriend.setEnabled(false);
@@ -121,7 +129,7 @@ public class AddFriend {
 		
 		
 		
-		JXTextArea Output = new JXTextArea();
+		
 		Output.setEnabled(true);
 		Output.setEditable(false);
 		Output.setBounds(10, 147, 260, 22);

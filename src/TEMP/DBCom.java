@@ -56,19 +56,55 @@ public class DBCom {
 	}
 	public boolean SetDateStorred(String temp){
 		this.connect();
-		System.out.println(temp);
+		System.out.println("Setting the database date to :" + temp);
 		String querry = "INSERT INTO date (`date`)VALUES('" + temp + "')";
-		System.out.println(querry);
 		try{
 			Statement setDateStatement = con.createStatement();
 			setDateStatement.executeUpdate(querry);
+			
 			setDateStatement.close();
+			
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
-		
+		this.close();
 		
 		return true;
+	}
+	
+	/*
+	 * Returns a true if the given name is already in the database
+	 */
+	public boolean GetDubplicateName(String name){
+		boolean duplicate = true;
+		this.connect();
+		String querry = "SELECT `u_name` FROM `friends` WHERE (u_name=" + name + ")";
+		try{
+			Statement nameStmnt = con.createStatement();
+			ResultSet nameRss = nameStmnt.executeQuery(querry);
+			duplicate = nameRss.next();														//should return a false if the name is not in the database as it doesn't return any rows
+			nameRss.close();
+		} catch (SQLException e2){
+			e2.printStackTrace();
+		}
+		this.close();
+		return duplicate;
+	}
+	
+	public boolean GetDuplicateEmail(String email){
+		boolean duplicate = true;
+		this.connect();
+		String querry = "SELECT `u_name` FROM `friends` WHERE (`email`='" + email + "')";
+		try{
+			Statement emailStmnt = con.createStatement();
+			ResultSet emailRss = emailStmnt.executeQuery(querry);
+			duplicate = emailRss.next();														//should return a false if the enail is not in the database as it doesn't return any rows
+			emailRss.close();
+		} catch (SQLException e2){
+			e2.printStackTrace();
+		}
+		this.close();
+		return duplicate;
 	}
 	
 	private void close() {
