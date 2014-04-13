@@ -72,13 +72,27 @@ public class DBCom {
 		return true;
 	}
 	
+	
+	public void AddFriend(String name, String email, String bday){
+		this.connect();
+		String querry = "INSERT INTO friends (`u_name`,`bday`,`email`)VALUES('"+ name + "','" + bday +"','" + email + "')";
+		try{
+			Statement addFriendStmt = con.createStatement();
+			addFriendStmt.executeUpdate(querry);
+			addFriendStmt.close();
+		}catch (SQLException e1){
+			e1.printStackTrace();
+		}
+		this.close();
+	}
+	
 	/*
 	 * Returns a true if the given name is already in the database
 	 */
 	public boolean GetDubplicateName(String name){
 		boolean duplicate = true;
 		this.connect();
-		String querry = "SELECT `u_name` FROM `friends` WHERE (u_name=" + name + ")";
+		String querry = "SELECT `u_name` FROM `friends` WHERE `u_name`='" + name + "'";
 		try{
 			Statement nameStmnt = con.createStatement();
 			ResultSet nameRss = nameStmnt.executeQuery(querry);

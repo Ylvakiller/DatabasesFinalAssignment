@@ -50,14 +50,24 @@ public class AddFriend {
 		btnAddThisFriend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (con.GetDubplicateName(Nickname)){
+					Output.removeAll();
 					Output.append("Name already found, failed to add friend");
+				}else if(AddFriend.CheckEmail(EmailAddress)){
+					Output.removeAll();
+					Output.append("Incorrect email adress, please make sure to spell it correctely.");
+					Output.append("Failed to add friend.");
 				}else if(con.GetDuplicateEmail(EmailAddress)){
+					Output.removeAll();
 					Output.append("Email already found, failed to add friend");
+				}else{
+					Output.removeAll();
+					Output.append("Adding this friend");
+					con.AddFriend(Nickname, EmailAddress, BirthDay);
 				}
 			}
 		});
 		btnAddThisFriend.setText("Add this friend!");
-		btnAddThisFriend.setBounds(10, 113, 260, 25);
+		btnAddThisFriend.setBounds(10, 100, 260, 25);
 		btnAddThisFriend.setEnabled(false);
 		jf.getContentPane().add(btnAddThisFriend);
 		
@@ -96,13 +106,13 @@ public class AddFriend {
 				btnAddThisFriend.setEnabled(AddFriend.EnableButton());
 			}
 		});
-		Email.setBounds(82, 52, 188, 20);
+		Email.setBounds(82, 73, 188, 20);
 		jf.getContentPane().add(Email);
 		Email.setColumns(10);
 		
 		JXLabel lblEmailAdress = new JXLabel();
 		lblEmailAdress.setText("Email adress:");
-		lblEmailAdress.setBounds(10, 52, 72, 20);
+		lblEmailAdress.setBounds(10, 73, 72, 20);
 		jf.getContentPane().add(lblEmailAdress);
 		
 		final JXDatePicker Bday = new JXDatePicker();
@@ -119,12 +129,12 @@ public class AddFriend {
 				btnAddThisFriend.setEnabled(AddFriend.EnableButton());
 			}
 		});
-		Bday.setBounds(82, 83, 205, 22);
+		Bday.setBounds(82, 51, 205, 20);
 		jf.getContentPane().add(Bday);
 		
 		JXLabel lblBirthday = new JXLabel();
 		lblBirthday.setText("Birthday");
-		lblBirthday.setBounds(10, 84, 72, 20);
+		lblBirthday.setBounds(10, 51, 72, 20);
 		jf.getContentPane().add(lblBirthday);
 		
 		
@@ -132,7 +142,7 @@ public class AddFriend {
 		
 		Output.setEnabled(true);
 		Output.setEditable(false);
-		Output.setBounds(10, 147, 260, 22);
+		Output.setBounds(10, 136, 260, 33);
 		jf.getContentPane().add(Output);
 		
 		jf.setVisible(true);
@@ -153,6 +163,23 @@ public class AddFriend {
 			}
 		}
 		return temp;
+		
+	}
+	private static boolean CheckEmail(String email){
+		int index1 = 0;
+		int index2 = 0;
+		index1 = email.indexOf('@');
+		if (index1 == 0){
+			return true;
+		}else{
+			index2 = email.lastIndexOf('.');
+			if (index1>index2){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		
 		
 	}
 }
