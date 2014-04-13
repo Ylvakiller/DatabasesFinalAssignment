@@ -25,15 +25,9 @@ public class DBCom {
 		
 	}
 	
-	public int AddData(String query)throws SQLException{
-		Statement temp = con.createStatement();
-		int LinesChanged = temp.executeUpdate(query);
-		temp.close();
-		return LinesChanged;
-		
-	}
-	
-	
+	/*
+	 * returns a string of the date that the database has as his last entry
+	 */
 	public String GetDateStorred(){
 		
 		String date = "";
@@ -54,6 +48,10 @@ public class DBCom {
 		return date;
 		
 	}
+	
+	/*
+	 * sets the date to the value of temp
+	 */
 	public boolean SetDateStorred(String temp){
 		this.connect();
 		System.out.println("Setting the database date to :" + temp);
@@ -72,7 +70,9 @@ public class DBCom {
 		return true;
 	}
 	
-	
+	/*
+	 * adds a friend to the database, in order to use it one should first check whether or not the name, email and birthday are of correct syntax and are of correct uniqueness
+	 */
 	public void AddFriend(String name, String email, String bday){
 		this.connect();
 		String querry = "INSERT INTO friends (`u_name`,`bday`,`email`)VALUES('"+ name + "','" + bday +"','" + email + "')";
@@ -104,7 +104,9 @@ public class DBCom {
 		this.close();
 		return duplicate;
 	}
-	
+	/*
+	 * Returns true if the given email is already in the database
+	 */
 	public boolean GetDuplicateEmail(String email){
 		boolean duplicate = true;
 		this.connect();
@@ -112,7 +114,7 @@ public class DBCom {
 		try{
 			Statement emailStmnt = con.createStatement();
 			ResultSet emailRss = emailStmnt.executeQuery(querry);
-			duplicate = emailRss.next();														//should return a false if the enail is not in the database as it doesn't return any rows
+			duplicate = emailRss.next();													//should return a false if the email is not in the database as it doesn't return any rows
 			emailRss.close();
 		} catch (SQLException e2){
 			e2.printStackTrace();
@@ -121,6 +123,9 @@ public class DBCom {
 		return duplicate;
 	}
 	
+	/*
+	 * closes the connection to the database
+	 */
 	private void close() {
 		try {
 			con.close();
@@ -130,6 +135,9 @@ public class DBCom {
 		
 	}
 
+	/*
+	 * connects to the database
+	 */
 	private void connect(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");

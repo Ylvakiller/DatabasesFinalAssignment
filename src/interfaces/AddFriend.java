@@ -149,7 +149,7 @@ public class AddFriend {
 		
 	}
 	/**
-	 * Called whenever one of the fields recieves an input, this method is here to check if all the fields have at least gotten an input and then enables the button to process the info
+	 * Called whenever one of the fields receives an input, this method is here to check if all the fields have at least gotten an input and then enables the button to process the info
 	 * @param btnAddThisFriend
 	 */
 	private static boolean EnableButton(){
@@ -165,6 +165,11 @@ public class AddFriend {
 		return temp;
 		
 	}
+	
+	/*
+	 * returns true if the String email is not a correct email
+	 * sidenote , might move this class to DBCom so I can use it in multiple classes, unsure yet
+	 */
 	private static boolean CheckEmail(String email){
 		int index1 = 0;
 		int index2 = 0;
