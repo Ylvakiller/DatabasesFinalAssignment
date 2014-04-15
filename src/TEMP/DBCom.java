@@ -123,6 +123,10 @@ public class DBCom {
 		return duplicate;
 	}
 	
+	/*
+	 * returns a string array with in that the name, birthday and email that corresponds to the name of the variable name that has been put into this method
+	 */
+	
 	public String[] GetDateFromName(String name){
 		String[] returnString = {"null", "null", "null"};
 		this.connect();
