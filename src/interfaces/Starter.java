@@ -46,101 +46,95 @@ public class Starter {
 		lblWelcomeToThis.setBounds(0, 20, 234, 15);
 		jf.getContentPane().add(lblWelcomeToThis);
 		
-		Button button = new Button("Add a friend");
-		button.addActionListener(new ActionListener() {
+		Button AddFriendButton = new Button("Add a friend");
+		AddFriendButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new AddFriend();
 			}
 		});
-		button.setBounds(10, 41, 214, 22);
-		jf.getContentPane().add(button);
+		AddFriendButton.setBounds(10, 41, 214, 22);
+		jf.getContentPane().add(AddFriendButton);
 		
-		Button button_1 = new Button("Update a friend");
-		button_1.addActionListener(new ActionListener() {
+		Button UpdateFriendButton = new Button("Update or deactivate a friend");
+		UpdateFriendButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				new UpdateFriend();
 			}
 		});
-		button_1.setBounds(10, 63, 214, 22);
-		jf.getContentPane().add(button_1);
+		UpdateFriendButton.setBounds(10, 63, 214, 22);
+		jf.getContentPane().add(UpdateFriendButton);
 		
-		Button button_2 = new Button("Deactivate a friend");
-		button_2.addActionListener(new ActionListener() {
+		Button FriendPayButton = new Button("Make a friend pay for something");
+		FriendPayButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		button_2.setBounds(10, 85, 214, 22);
-		jf.getContentPane().add(button_2);
+		FriendPayButton.setBounds(10, 85, 214, 22);
+		jf.getContentPane().add(FriendPayButton);
 		
-		Button button_3 = new Button("Make a friend pay for something");
-		button_3.addActionListener(new ActionListener() {
+		Button FriendDepositButton = new Button("Make a friend do a general deposit");
+		FriendDepositButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		button_3.setBounds(10, 107, 214, 22);
-		jf.getContentPane().add(button_3);
+		FriendDepositButton.setBounds(10, 107, 214, 22);
+		jf.getContentPane().add(FriendDepositButton);
 		
-		Button button_4 = new Button("Make a friend do a general deposit");
-		button_4.addActionListener(new ActionListener() {
+		Button FriendDebtButton = new Button("See what a friend needs to pay");
+		FriendDebtButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		button_4.setBounds(10, 129, 214, 22);
-		jf.getContentPane().add(button_4);
+		FriendDebtButton.setBounds(10, 129, 214, 22);
+		jf.getContentPane().add(FriendDebtButton);
 		
-		Button button_5 = new Button("See what a friend needs to pay");
-		button_5.addActionListener(new ActionListener() {
+		Button FriendFinancialButton = new Button("Get all the financial stats of a friend");
+		FriendFinancialButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		button_5.setBounds(10, 151, 214, 22);
-		jf.getContentPane().add(button_5);
+		FriendFinancialButton.setBounds(10, 151, 214, 22);
+		jf.getContentPane().add(FriendFinancialButton);
 		
-		Button button_6 = new Button("Get all the financial stats of a friend");
-		button_6.addActionListener(new ActionListener() {
+		Button AddActivityButton = new Button("Add an activity");
+		AddActivityButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		button_6.setBounds(10, 173, 214, 22);
-		jf.getContentPane().add(button_6);
+		AddActivityButton.setBounds(10, 173, 214, 22);
+		jf.getContentPane().add(AddActivityButton);
 		
-		Button button_7 = new Button("Add an activity");
-		button_7.addActionListener(new ActionListener() {
+		Button AddFriendToActivityButton = new Button("Get a friend to do an acitivity");
+		AddFriendToActivityButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		button_7.setBounds(10, 195, 214, 22);
-		jf.getContentPane().add(button_7);
+		AddFriendToActivityButton.setBounds(10, 195, 214, 22);
+		jf.getContentPane().add(AddFriendToActivityButton);
 		
-		Button button_8 = new Button("Get a friend to do an acitivity");
-		button_8.addActionListener(new ActionListener() {
+		Button IncreaseActivityDebtButton = new Button("Increase amount due for an activity");
+		IncreaseActivityDebtButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		button_8.setBounds(10, 217, 214, 22);
-		jf.getContentPane().add(button_8);
+		IncreaseActivityDebtButton.setBounds(10, 217, 214, 22);
+		jf.getContentPane().add(IncreaseActivityDebtButton);
 		
-		Button button_9 = new Button("Increase amount due for an activity");
-		button_9.addActionListener(new ActionListener() {
+		Button ActivityFinancialStatsButton = new Button("See the finanacial stats of an activity");
+		ActivityFinancialStatsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		button_9.setBounds(10, 239, 214, 22);
-		jf.getContentPane().add(button_9);
+		ActivityFinancialStatsButton.setBounds(10, 239, 214, 22);
+		jf.getContentPane().add(ActivityFinancialStatsButton);
 		
-		Button button_10 = new Button("See the finanacial stats of an activity");
-		button_10.addActionListener(new ActionListener() {
+		Button FriendTransactionsButton = new Button("See all transactions of a friend");
+		FriendTransactionsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		button_10.setBounds(10, 261, 214, 22);
-		jf.getContentPane().add(button_10);
-		
-		Button button_11 = new Button("See all transactions of a friend");
-		button_11.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		button_11.setBounds(10, 283, 214, 22);
-		jf.getContentPane().add(button_11);
+		FriendTransactionsButton.setBounds(10, 261, 214, 22);
+		jf.getContentPane().add(FriendTransactionsButton);
 		
 		jf.setVisible(true);
 		

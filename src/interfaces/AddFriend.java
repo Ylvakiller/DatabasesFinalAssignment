@@ -31,14 +31,14 @@ public class AddFriend {
 	private static Boolean a, b, c;
 	final static DBCom con = new DBCom();
 	
-	public static void main(String[] args){
+	public AddFriend(){
 		final JXTextArea Output = new JXTextArea();
 		a = false;
 		b = false;
 		c = false;
 		final JFrame jf = new JFrame("");
 		jf.setSize(311,218);
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		jf.getContentPane().setLayout(null);
 		
 		JLabel lblWelcomeToThis = new JLabel("This window will allow you to add a friend to the database!");
@@ -49,7 +49,7 @@ public class AddFriend {
 		final JXButton btnAddThisFriend = new JXButton();
 		btnAddThisFriend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (con.GetDubplicateName(Nickname)){
+				if (con.GetNameExcists(Nickname)){
 					Output.removeAll();
 					Output.append("Name already found, failed to add friend");
 				}else if(AddFriend.CheckEmail(EmailAddress)){

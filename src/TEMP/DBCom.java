@@ -89,7 +89,7 @@ public class DBCom {
 	/*
 	 * Returns a true if the given name is already in the database
 	 */
-	public boolean GetDubplicateName(String name){
+	public boolean GetNameExcists(String name){
 		boolean duplicate = true;
 		this.connect();
 		String querry = "SELECT `u_name` FROM `friends` WHERE `u_name`='" + name + "'";
@@ -121,6 +121,25 @@ public class DBCom {
 		}
 		this.close();
 		return duplicate;
+	}
+	
+	public String[] GetDateFromName(String name){
+		String[] returnString = {"null", "null", "null"};
+		this.connect();
+		String querry = "SELECT `u_name`,`bday`,`email` FROM `friends` WHERE (`u_name`='" + name + "')";
+		try{
+			Statement dataStmnt = con.createStatement();
+			ResultSet dataRss = dataStmnt.executeQuery(querry);
+			dataRss.next();
+			returnString[0] = dataRss.getString(1);
+			returnString[1] = dataRss.getString(2);
+			returnString[2] = dataRss.getString(3);
+			dataRss.close();
+		} catch (SQLException e2){
+			e2.printStackTrace();
+		}
+		this.close();
+		return returnString;
 	}
 	
 	/*
