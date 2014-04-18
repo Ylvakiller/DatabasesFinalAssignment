@@ -97,11 +97,19 @@ public class AddFriend {
 		Name.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Nickname= Name.getText();											//Setting the NickName
+				
+				if (Nickname.length()>50){
+					console.errorOut("Name to long. You can only use 50 characters!");
+					Nickname = "";
+				}
+				
 				if (Nickname.equals("")){
 					a = false;
 				}else{
 					a = true;
 				}
+				
+				
 
 				btnAddThisFriend.setEnabled(AddFriend.EnableButton());
 			}
@@ -114,6 +122,10 @@ public class AddFriend {
 		Email.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EmailAddress = Email.getText();										//Setting the Email
+				if (EmailAddress.length()>150){
+					console.errorOut("email to long. You can only use 150 characters!");
+					EmailAddress = "";
+				}
 				if (EmailAddress.equals("")){
 					b = false;
 				}else{
