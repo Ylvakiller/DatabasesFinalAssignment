@@ -29,6 +29,7 @@ public class UpdateFriend {
 	
 	public UpdateFriend(Console Console){
 		console = Console;
+		console.out("Succesfully opened the update or deactivate window");
 		con = new DBCom(console);
 		final JFrame jf = new JFrame("");
 		jf.getContentPane().setLayout(null);

@@ -69,7 +69,7 @@ public class Console {
 	 */
 	public void MakeVisible(){
 		if (jf.isVisible()){
-			this.out("Console already visible!");
+			this.errorOut("Console already visible!");
 		}else{
 			jf.setVisible(true);
 		}

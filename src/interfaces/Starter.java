@@ -154,7 +154,6 @@ public class Starter {
 		JButton btnNewButton = new JButton("Get the Console back :)");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				console.out("Making the console reappearing");
 				console.MakeVisible();
 			}
 		});

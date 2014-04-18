@@ -37,7 +37,7 @@ public class AddFriend {
 	public AddFriend(Console Console){
 		console = Console;
 		con = new DBCom(console);
-		
+		console.out("Succesfully opend the window to add a friend");
 		
 		final JXTextArea Output = new JXTextArea();
 		a = false;
