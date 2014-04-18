@@ -20,7 +20,6 @@ import java.awt.Color;
 import java.text.SimpleDateFormat;
 
 import org.jdesktop.swingx.JXButton;
-import org.jdesktop.swingx.JXTextArea;
 
 import Console.Console;
 import TEMP.DBCom;
@@ -39,7 +38,7 @@ public class AddFriend {
 		con = new DBCom(console);
 		console.out("Succesfully opend the window to add a friend");
 		
-		final JXTextArea Output = new JXTextArea();
+		final JTextField Output = new JTextField();
 		a = false;
 		b = false;
 		c = false;
@@ -56,20 +55,30 @@ public class AddFriend {
 		final JXButton btnAddThisFriend = new JXButton();
 		btnAddThisFriend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				console.out("Attempting to add friend");
 				if (con.GetNameExcists(Nickname)){
-					Output.removeAll();
-					Output.append("Name already found, failed to add friend");
+					console.errorOut("Name already found");
+					console.errorOut("Failed to add friend");
+					Output.setText("Name already found, failed to add friend");
 				}else if(AddFriend.CheckEmail(EmailAddress)){
-					Output.removeAll();
-					Output.append("Incorrect email adress, please make sure to spell it correctely.");
-					Output.append("Failed to add friend.");
+					console.errorOut("Incorrect email adress");
+					console.errorOut("Failed to add friend");
+					Output.setText("Incorrect email adress, please make sure to spell it correctely.");
 				}else if(con.GetDuplicateEmail(EmailAddress)){
-					Output.removeAll();
-					Output.append("Email already found, failed to add friend");
+					console.errorOut("Duplicate email found");
+					console.errorOut("Failed to add friend");
+					Output.setText("Duplicate email");
 				}else{
-					Output.removeAll();
-					Output.append("Adding this friend");
-					con.AddFriend(Nickname, EmailAddress, BirthDay);
+					
+					if (con.AddFriend(Nickname, EmailAddress, BirthDay)){
+						console.out("Friend succesfully added");
+						Output.setText("Friend added");
+					}else{
+						console.errorOut("Failed to add friend, wierd problem");
+						console.errorOut("If there now is not a MySQL error then you have broken the program");
+						console.errorOut("Anyway have a cookie...");
+						Output.setText("Failed to add friend, check the console for details");
+					}
 				}
 			}
 		});
@@ -149,7 +158,7 @@ public class AddFriend {
 		
 		Output.setEnabled(true);
 		Output.setEditable(false);
-		Output.setBounds(10, 136, 260, 33);
+		Output.setBounds(10, 136, 254, 25);
 		jf.getContentPane().add(Output);
 		
 		jf.setVisible(true);

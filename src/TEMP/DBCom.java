@@ -56,14 +56,16 @@ public class DBCom {
 	
 	/*
 	 * sets the date to the value of temp
+	 * returns a true if the date was succesfully set
 	 */
 	public boolean SetDateStorred(String temp){
 		this.connect();
+		int linesChanged = 0;
 		System.out.println("Setting the database date to :" + temp);
 		String querry = "INSERT INTO date (`date`)VALUES('" + temp + "')";
 		try{
 			Statement setDateStatement = con.createStatement();
-			setDateStatement.executeUpdate(querry);
+			linesChanged = setDateStatement.executeUpdate(querry);
 			
 			setDateStatement.close();
 			
@@ -72,23 +74,35 @@ public class DBCom {
 		}
 		this.close();
 		
-		return true;
+		if (linesChanged==0){
+			return false;
+		}else{
+			return true;
+		}
 	}
 	
 	/*
 	 * adds a friend to the database, in order to use it one should first check whether or not the name, email and birthday are of correct syntax and are of correct uniqueness
+	 * returns a true if the friend was succesfully added
 	 */
-	public void AddFriend(String name, String email, String bday){
+	public boolean AddFriend(String name, String email, String bday){
 		this.connect();
+		int linesChanged = 0;
 		String querry = "INSERT INTO friends (`u_name`,`bday`,`email`)VALUES('"+ name + "','" + bday +"','" + email + "')";
 		try{
 			Statement addFriendStmt = con.createStatement();
-			addFriendStmt.executeUpdate(querry);
+			linesChanged = addFriendStmt.executeUpdate(querry);
 			addFriendStmt.close();
 		}catch (SQLException e1){
 			console.errorOut(e1.toString());
 		}
 		this.close();
+		
+		if (linesChanged==0){
+			return false;
+		}else{
+			return true;
+		}
 	}
 	
 	/*
