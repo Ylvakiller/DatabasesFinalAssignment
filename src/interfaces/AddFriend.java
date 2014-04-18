@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 
 
 
+
 import org.jdesktop.swingx.JXLabel;
 import org.jdesktop.swingx.JXTextField;
 
@@ -22,7 +23,7 @@ import java.text.SimpleDateFormat;
 import org.jdesktop.swingx.JXButton;
 
 import Console.Console;
-import TEMP.DBCom;
+import Database.Communication;
 
 
 
@@ -31,11 +32,11 @@ public class AddFriend {
 	private static String Nickname, EmailAddress, BirthDay;
 	private static Boolean a, b, c;
 	private Console console;
-	private static DBCom con;
+	private static Communication con;
 	
 	public AddFriend(Console Console){
 		console = Console;
-		con = new DBCom(console);
+		con = new Communication(console);
 		console.out("Succesfully opend the window to add a friend");
 		
 		final JTextField Output = new JTextField();
@@ -184,7 +185,7 @@ public class AddFriend {
 	
 	/*
 	 * returns true if the String email is not a correct email
-	 * sidenote , might move this class to DBCom so I can use it in multiple classes, unsure yet
+	 * sidenote , might move this class to Communication so I can use it in multiple classes, unsure yet
 	 */
 	private static boolean CheckEmail(String email){
 		int index1 = 0;

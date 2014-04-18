@@ -14,12 +14,12 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import Console.Console;
-import TEMP.DBCom;
+import Database.Communication;
 
 public class UpdateFriend {
 	private JTextField searchField;
 	private String FriendNameString;
-	private static DBCom con;
+	private static Communication con;
 	private JTextField NameField;
 	private JTextField EmailField;
 	private JTextField BirthdayField;
@@ -28,7 +28,7 @@ public class UpdateFriend {
 	public UpdateFriend(Console Console){
 		console = Console;
 		console.out("Succesfully opened the update or deactivate window");
-		con = new DBCom(console);
+		con = new Communication(console);
 		final JFrame jf = new JFrame("");
 		jf.getContentPane().setLayout(null);
 		jf.setSize(366,255);

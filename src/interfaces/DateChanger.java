@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import Console.Console;
-import TEMP.DBCom;
+import Database.Communication;
 
 import org.jdesktop.swingx.JXDatePicker;
 
@@ -20,7 +20,7 @@ import java.awt.event.ActionEvent;
 public class DateChanger {
 	private final JXDatePicker datePicker = new JXDatePicker();
 	String uDate = "Incorrectly Entered";
-	final DBCom con;
+	final Communication con;
 	private Console console;
 
 	public DateChanger(Console Console){
@@ -32,7 +32,7 @@ public class DateChanger {
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.getContentPane().setLayout(null);
 		
-		con = new DBCom(console);
+		con = new Communication(console);
 		console.out("Retrieving date from the database");
 		String old_date= con.GetDateStorred();
 		String month = "";

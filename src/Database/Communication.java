@@ -1,4 +1,4 @@
-package TEMP;
+package Database;
 import java.sql.*;
 
 import Console.Console;
@@ -12,7 +12,7 @@ import Console.Console;
 
 
 
-public class DBCom {
+public class Communication {
 	
 	private final String hostname = "jdbc:mysql://localhost/";
 	private final String dbName = "finalassignment";
@@ -25,7 +25,7 @@ public class DBCom {
 	/*
 	 * This Constructor will connect to the database, Therefore this is the only part that needs changing when switching databases
 	 */
-	public DBCom(Console Console){
+	public Communication(Console Console){
 		console = Console;
 		
 	}
