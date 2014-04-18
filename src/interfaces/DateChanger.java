@@ -27,7 +27,7 @@ public class DateChanger {
 		console = Console;
 		console.out("Succesfully opend the window to change the database date");
 		
-		JFrame jf = new JFrame("");
+		JFrame jf = new JFrame("Database assignment");
 		jf.setSize(490,155);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.getContentPane().setLayout(null);

@@ -18,7 +18,7 @@ public class Starter {
 
 	public static void main(String[] args){
 		final Console console = new Console();
-		JFrame jf = new JFrame("");
+		JFrame jf = new JFrame("Database assignment");
 		jf.setSize(250,351);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.getContentPane().setLayout(null);

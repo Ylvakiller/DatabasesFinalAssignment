@@ -43,7 +43,7 @@ public class AddFriend {
 		a = false;
 		b = false;
 		c = false;
-		final JFrame jf = new JFrame("");
+		final JFrame jf = new JFrame("Database assignment");
 		jf.setSize(311,218);
 		jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		jf.getContentPane().setLayout(null);

@@ -16,7 +16,7 @@ public class Console {
 	public Console(){
 		date = new Date();
 		
-		jf = new JFrame("");
+		jf = new JFrame("Database assignment Console");
 		jf.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		jf.getContentPane().setLayout(null);
 		jf.setSize(730,396);

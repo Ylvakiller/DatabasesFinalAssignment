@@ -29,7 +29,7 @@ public class UpdateFriend {
 		console = Console;
 		console.out("Succesfully opened the update or deactivate window");
 		con = new Communication(console);
-		final JFrame jf = new JFrame("");
+		final JFrame jf = new JFrame("Database assignment");
 		jf.getContentPane().setLayout(null);
 		jf.setSize(366,255);
 		jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
