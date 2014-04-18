@@ -30,6 +30,7 @@ public class Console {
 		OutputArea.setBackground(Color.DARK_GRAY);
 		scrollPane.setViewportView(OutputArea);
 		OutputArea.setAutoscrolls(true);
+		this.out("Welcome to the console");
 		jf.setVisible(true);
 		
 	}
