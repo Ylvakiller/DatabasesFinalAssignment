@@ -15,17 +15,21 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 
+import Console.Console;
 import TEMP.DBCom;
 
 public class UpdateFriend {
 	private JTextField searchField;
 	private String FriendNameString;
-	final static DBCom con = new DBCom();
+	private static DBCom con;
 	private JTextField NameField;
 	private JTextField EmailField;
 	private JTextField BirthdayField;
+	private Console console;
 	
-	public UpdateFriend(){
+	public UpdateFriend(Console Console){
+		console = Console;
+		con = new DBCom(console);
 		final JFrame jf = new JFrame("");
 		jf.getContentPane().setLayout(null);
 		jf.setSize(366,330);

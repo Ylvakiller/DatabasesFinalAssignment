@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JLabel;
 
+import Console.Console;
+
 import java.awt.Button;
 import java.awt.Font;
 
@@ -15,6 +17,7 @@ import java.awt.Font;
 public class Starter {
 
 	public static void main(String[] args){
+		final Console console = new Console();
 		JFrame jf = new JFrame("");
 		jf.setSize(250,351);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,7 +28,7 @@ public class Starter {
 		DateChange.setHorizontalAlignment(SwingConstants.LEFT);
 		DateChange.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new DateChanger();
+				new DateChanger(console);
 			}
 		});
 		DateChange.setBounds(0, 0, 115, 20);
@@ -49,7 +52,7 @@ public class Starter {
 		Button AddFriendButton = new Button("Add a friend");
 		AddFriendButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new AddFriend();
+				new AddFriend(console);
 			}
 		});
 		AddFriendButton.setBounds(10, 41, 214, 22);
@@ -58,7 +61,7 @@ public class Starter {
 		Button UpdateFriendButton = new Button("Update or deactivate a friend");
 		UpdateFriendButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new UpdateFriend();
+				new UpdateFriend(console);
 			}
 		});
 		UpdateFriendButton.setBounds(10, 63, 214, 22);
@@ -135,6 +138,15 @@ public class Starter {
 		});
 		FriendTransactionsButton.setBounds(10, 261, 214, 22);
 		jf.getContentPane().add(FriendTransactionsButton);
+		
+		JButton btnNewButton = new JButton("Get the Console back :)");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				console.MakeVisible();
+			}
+		});
+		btnNewButton.setBounds(10, 289, 214, 23);
+		jf.getContentPane().add(btnNewButton);
 		
 		jf.setVisible(true);
 		

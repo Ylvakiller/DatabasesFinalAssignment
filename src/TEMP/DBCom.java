@@ -1,6 +1,8 @@
 package TEMP;
 import java.sql.*;
 
+import Console.Console;
+
 /**
  * 
  * @author Remco Geuze
@@ -17,11 +19,15 @@ public class DBCom {
 	private final String username = "root";
 	private final String password = "";
 	public Connection con;
+	@SuppressWarnings("unused")
+	private Console console;
+	
+	
 	/*
 	 * This Constructor will connect to the database, Therefore this is the only part that needs changing when switching databases
 	 */
-	public DBCom(){
-		
+	public DBCom(Console Console){
+		console = Console;
 		
 	}
 	

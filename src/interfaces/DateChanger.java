@@ -2,11 +2,17 @@ package interfaces;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import Console.Console;
 import TEMP.DBCom;
+
 import org.jdesktop.swingx.JXDatePicker;
+
 import java.text.SimpleDateFormat;
 import java.awt.Dimension;
+
 import org.jdesktop.swingx.JXButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -14,13 +20,16 @@ import java.awt.event.ActionEvent;
 public class DateChanger {
 	private final JXDatePicker datePicker = new JXDatePicker();
 	String uDate = "Incorrectly Entered";
+	final DBCom con;
+	private Console console;
 
-	public DateChanger(){
+	public DateChanger(Console Console){
+		console = Console;
 		JFrame jf = new JFrame("");
 		jf.setSize(490,155);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.getContentPane().setLayout(null);
-		final DBCom con = new DBCom();
+		con = new DBCom(console);
 		String old_date= con.GetDateStorred();
 		String month = "";
 		String day = old_date.substring(8, 10);

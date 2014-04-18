@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
 
+
 import org.jdesktop.swingx.JXLabel;
 import org.jdesktop.swingx.JXTextField;
 
@@ -21,6 +22,7 @@ import java.text.SimpleDateFormat;
 import org.jdesktop.swingx.JXButton;
 import org.jdesktop.swingx.JXTextArea;
 
+import Console.Console;
 import TEMP.DBCom;
 
 
@@ -29,9 +31,14 @@ public class AddFriend {
 	private static JTextField Email;
 	private static String Nickname, EmailAddress, BirthDay;
 	private static Boolean a, b, c;
-	final static DBCom con = new DBCom();
+	private Console console;
+	private static DBCom con;
 	
-	public AddFriend(){
+	public AddFriend(Console Console){
+		console = Console;
+		con = new DBCom(console);
+		
+		
 		final JXTextArea Output = new JXTextArea();
 		a = false;
 		b = false;
