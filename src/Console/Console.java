@@ -3,14 +3,19 @@ package Console;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+
 import java.awt.Color;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Console {
 
-	JTextArea OutputArea;
+	private JTextArea OutputArea;
 	final JFrame jf;
-	
+	private Date date;
 	public Console(){
+		date = new Date();
+		
 		jf = new JFrame("");
 		jf.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		jf.getContentPane().setLayout(null);
@@ -26,13 +31,35 @@ public class Console {
 		scrollPane.setViewportView(OutputArea);
 		OutputArea.setAutoscrolls(true);
 		jf.setVisible(true);
+		
 	}
 	
 	/*
-	 * outputs the given string to the textarea
+	 * Outputs the given string to the textarea using an [INFO] block
+	 * for printing out errors see errorOut
 	 */
 	public void out(String output){
-		OutputArea.append(output);
+		if (output.equals(null)){
+			
+		}else{
+			date = Calendar.getInstance().getTime();
+			OutputArea.append("[" + date + "]");
+			OutputArea.append(" [INFO] ");
+			OutputArea.append(output);
+			OutputArea.append("\n");
+		}
+		
+	}
+	
+	/*
+	 * Prints out the error to the console, uses the [ERROR] block
+	 * for printing out normal messages check the out method
+	 */
+	public void errorOut(String error){
+		date = Calendar.getInstance().getTime();
+		OutputArea.append("[" + date + "]");
+		OutputArea.append(" [ERROR] ");
+		OutputArea.append(error);
 		OutputArea.append("\n");
 	}
 	

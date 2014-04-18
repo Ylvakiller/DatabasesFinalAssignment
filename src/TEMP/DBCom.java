@@ -19,7 +19,6 @@ public class DBCom {
 	private final String username = "root";
 	private final String password = "";
 	public Connection con;
-	@SuppressWarnings("unused")
 	private Console console;
 	
 	
@@ -48,7 +47,7 @@ public class DBCom {
 			date = dbDate.getString(1);
 			dbDate.close();
 		} catch (SQLException e1) {
-			e1.printStackTrace();
+			console.errorOut(e1.toString());
 		}
 		this.close();
 		return date;
@@ -69,7 +68,7 @@ public class DBCom {
 			setDateStatement.close();
 			
 		} catch (SQLException e1) {
-			e1.printStackTrace();
+			console.errorOut(e1.toString());
 		}
 		this.close();
 		
@@ -87,7 +86,7 @@ public class DBCom {
 			addFriendStmt.executeUpdate(querry);
 			addFriendStmt.close();
 		}catch (SQLException e1){
-			e1.printStackTrace();
+			console.errorOut(e1.toString());
 		}
 		this.close();
 	}
@@ -105,7 +104,7 @@ public class DBCom {
 			duplicate = nameRss.next();														//should return a false if the name is not in the database as it doesn't return any rows
 			nameRss.close();
 		} catch (SQLException e2){
-			e2.printStackTrace();
+			console.errorOut(e2.toString());
 		}
 		this.close();
 		return duplicate;
@@ -123,7 +122,7 @@ public class DBCom {
 			duplicate = emailRss.next();													//should return a false if the email is not in the database as it doesn't return any rows
 			emailRss.close();
 		} catch (SQLException e2){
-			e2.printStackTrace();
+			console.errorOut(e2.toString());
 		}
 		this.close();
 		return duplicate;
@@ -146,7 +145,7 @@ public class DBCom {
 			returnString[2] = dataRss.getString(3);
 			dataRss.close();
 		} catch (SQLException e2){
-			e2.printStackTrace();
+			console.errorOut(e2.toString());
 		}
 		this.close();
 		return returnString;
@@ -159,7 +158,7 @@ public class DBCom {
 		try {
 			con.close();
 		}catch (SQLException ex){
-			ex.printStackTrace();
+			console.errorOut(ex.toString());
 		}
 		
 	}
@@ -173,9 +172,9 @@ public class DBCom {
 			this.con = DriverManager.getConnection(hostname + dbName, username, password);	
 			System.out.println("Succesfully connected");
 		}catch(SQLException ex){
-			ex.printStackTrace();
+			console.errorOut(ex.toString());
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			console.errorOut(e.toString());
 		}
 	}
 
