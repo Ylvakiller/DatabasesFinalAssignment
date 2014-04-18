@@ -169,8 +169,7 @@ public class DBCom {
 	private void connect(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			this.con = DriverManager.getConnection(hostname + dbName, username, password);	
-			System.out.println("Succesfully connected");
+			this.con = DriverManager.getConnection(hostname + dbName, username, password);
 		}catch(SQLException ex){
 			console.errorOut(ex.toString());
 		} catch (ClassNotFoundException e) {

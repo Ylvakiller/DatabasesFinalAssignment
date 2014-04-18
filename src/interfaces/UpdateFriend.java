@@ -12,8 +12,6 @@ import java.awt.Button;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.JTextArea;
-import javax.swing.JScrollPane;
 
 import Console.Console;
 import TEMP.DBCom;
@@ -33,7 +31,7 @@ public class UpdateFriend {
 		con = new DBCom(console);
 		final JFrame jf = new JFrame("");
 		jf.getContentPane().setLayout(null);
-		jf.setSize(366,330);
+		jf.setSize(366,255);
 		jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		searchField = new JTextField();
@@ -43,7 +41,7 @@ public class UpdateFriend {
 		
 		JLabel lblNewLabel = new JLabel("Enter the name of the friend");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel.setBounds(11, 25, 179, 14);
+		lblNewLabel.setBounds(11, 27, 179, 14);
 		jf.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("This interface will let you update information about a friend");
@@ -56,20 +54,14 @@ public class UpdateFriend {
 		button.setBounds(172, 50, 60, 22);
 		jf.getContentPane().add(button);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 193, 329, 88);
-		jf.getContentPane().add(scrollPane);
-		final JTextArea ConsoleArea = new JTextArea();
-		scrollPane.setViewportView(ConsoleArea);
-		ConsoleArea.setAutoscrolls(true);
-		
 		NameField = new JTextField();
 		NameField.setEditable(false);
 		NameField.setBounds(77, 105, 155, 20);
 		jf.getContentPane().add(NameField);
 		NameField.setColumns(10);
 		
-		JLabel lblThisFriendHas = new JLabel("The following information was retrieved from the database");
+		JLabel lblThisFriendHas = new JLabel("The following information was retrieved from the database:");
+		lblThisFriendHas.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblThisFriendHas.setBounds(11, 83, 298, 14);
 		jf.getContentPane().add(lblThisFriendHas);
 		
@@ -97,21 +89,33 @@ public class UpdateFriend {
 		BirthdayField.setColumns(10);
 		BirthdayField.setBounds(77, 164, 155, 20);
 		jf.getContentPane().add(BirthdayField);
+		
+		final JLabel errorLabel = new JLabel("Name not found, please enter a correct name!");
+		errorLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		errorLabel.setBounds(11, 198, 329, 14);
+		jf.getContentPane().add(errorLabel);
 		jf.setVisible(true);
 		
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FriendNameString = searchField.getText();
-				ConsoleArea.append("Searching for " + FriendNameString + " in the database." + "\n");
+				console.out("Searching for " + FriendNameString + " in the database.");
 				if (con.GetNameExcists(FriendNameString)){
-					ConsoleArea.append("Name found, retrieving currently stored details." + "\n");
+					console.out("Name succesfully found");
+					errorLabel.setVisible(false);
+					console.out("Retrieving details");
 					String [] tempData = con.GetDateFromName(FriendNameString);
-					ConsoleArea.append("Retrieved some data, entering that on fields." + "\n");
+					console.out("Details retrieved, entering details on fields");
 					NameField.setText(tempData[0]);
 					BirthdayField.setText(tempData[1]);
 					EmailField.setText(tempData[2]);
 				}else{
-					ConsoleArea.append("Name not found, please enter a correct name." + "\n");
+					console.errorOut("Name not found in the database, sending error to user");
+					errorLabel.setVisible(true);
+					console.out("Making sure the info in the details fields is empty");
+					NameField.setText(null);
+					BirthdayField.setText(null);
+					EmailField.setText(null);
 				}
 			}
 		});
