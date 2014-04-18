@@ -104,7 +104,7 @@ public class UpdateFriend {
 					console.out("Name succesfully found");
 					errorLabel.setVisible(false);
 					console.out("Retrieving details");
-					String [] tempData = con.GetDateFromName(FriendNameString);
+					String [] tempData = con.GetDataFromName(FriendNameString);
 					console.out("Details retrieved, entering details on fields");
 					NameField.setText(tempData[0]);
 					BirthdayField.setText(tempData[1]);

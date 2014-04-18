@@ -132,7 +132,7 @@ public class DBCom {
 	 * returns a string array with in that the name, birthday and email that corresponds to the name of the variable name that has been put into this method
 	 */
 	
-	public String[] GetDateFromName(String name){
+	public String[] GetDataFromName(String name){
 		String[] returnString = {"null", "null", "null"};
 		this.connect();
 		String querry = "SELECT `u_name`,`bday`,`email` FROM `friends` WHERE (`u_name`='" + name + "')";
@@ -144,6 +144,7 @@ public class DBCom {
 			returnString[1] = dataRss.getString(2);
 			returnString[2] = dataRss.getString(3);
 			dataRss.close();
+			console.out("Succesfully retrieved date from database");
 		} catch (SQLException e2){
 			console.errorOut(e2.toString());
 		}

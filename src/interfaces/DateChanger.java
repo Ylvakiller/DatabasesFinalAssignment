@@ -25,11 +25,15 @@ public class DateChanger {
 
 	public DateChanger(Console Console){
 		console = Console;
+		console.out("Succesfully opend the window to change the database date");
+		
 		JFrame jf = new JFrame("");
 		jf.setSize(490,155);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.getContentPane().setLayout(null);
+		
 		con = new DBCom(console);
+		console.out("Retrieving date from the database");
 		String old_date= con.GetDateStorred();
 		String month = "";
 		String day = old_date.substring(8, 10);
@@ -83,7 +87,12 @@ public class DateChanger {
 		btnApplyChange.setEnabled(false);
 		btnApplyChange.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				con.SetDateStorred(uDate);
+				console.out("Chanching the date in the database");
+				if (con.SetDateStorred(uDate)){
+					console.out("Succesfully changed the date in the database");
+				}else{
+					console.errorOut("Failed to change the date in the database");
+				}
 			}
 		});
 		
