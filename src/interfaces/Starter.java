@@ -28,6 +28,7 @@ public class Starter {
 		DateChange.setHorizontalAlignment(SwingConstants.LEFT);
 		DateChange.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				console.out("Opening the window to change the date");
 				new DateChanger(console);
 			}
 		});
@@ -38,7 +39,7 @@ public class Starter {
 		DataBase.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		DataBase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				console.out("Not yet implemented");
 			}
 		});
 		DataBase.setBounds(114, 0, 120, 20);
@@ -52,6 +53,7 @@ public class Starter {
 		Button AddFriendButton = new Button("Add a friend");
 		AddFriendButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				console.out("Opening the window to add a friend");
 				new AddFriend(console);
 			}
 		});
@@ -61,6 +63,7 @@ public class Starter {
 		Button UpdateFriendButton = new Button("Update or deactivate a friend");
 		UpdateFriendButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				console.out("Opening the update and deactivate window");
 				new UpdateFriend(console);
 			}
 		});
@@ -70,6 +73,7 @@ public class Starter {
 		Button FriendPayButton = new Button("Make a friend pay for something");
 		FriendPayButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				console.out("Not yet implemented");
 			}
 		});
 		FriendPayButton.setBounds(10, 85, 214, 22);
@@ -78,6 +82,7 @@ public class Starter {
 		Button FriendDepositButton = new Button("Make a friend do a general deposit");
 		FriendDepositButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				console.out("Not yet implemented");
 			}
 		});
 		FriendDepositButton.setBounds(10, 107, 214, 22);
@@ -86,6 +91,7 @@ public class Starter {
 		Button FriendDebtButton = new Button("See what a friend needs to pay");
 		FriendDebtButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				console.out("Not yet implemented");
 			}
 		});
 		FriendDebtButton.setBounds(10, 129, 214, 22);
@@ -94,6 +100,7 @@ public class Starter {
 		Button FriendFinancialButton = new Button("Get all the financial stats of a friend");
 		FriendFinancialButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				console.out("Not yet implemented");
 			}
 		});
 		FriendFinancialButton.setBounds(10, 151, 214, 22);
@@ -102,6 +109,7 @@ public class Starter {
 		Button AddActivityButton = new Button("Add an activity");
 		AddActivityButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				console.out("Not yet implemented");
 			}
 		});
 		AddActivityButton.setBounds(10, 173, 214, 22);
@@ -110,6 +118,7 @@ public class Starter {
 		Button AddFriendToActivityButton = new Button("Get a friend to do an acitivity");
 		AddFriendToActivityButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				console.out("Not yet implemented");
 			}
 		});
 		AddFriendToActivityButton.setBounds(10, 195, 214, 22);
@@ -118,6 +127,7 @@ public class Starter {
 		Button IncreaseActivityDebtButton = new Button("Increase amount due for an activity");
 		IncreaseActivityDebtButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				console.out("Not yet implemented");
 			}
 		});
 		IncreaseActivityDebtButton.setBounds(10, 217, 214, 22);
@@ -126,6 +136,7 @@ public class Starter {
 		Button ActivityFinancialStatsButton = new Button("See the finanacial stats of an activity");
 		ActivityFinancialStatsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				console.out("Not yet implemented");
 			}
 		});
 		ActivityFinancialStatsButton.setBounds(10, 239, 214, 22);
@@ -134,6 +145,7 @@ public class Starter {
 		Button FriendTransactionsButton = new Button("See all transactions of a friend");
 		FriendTransactionsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				console.out("Not yet implemented");
 			}
 		});
 		FriendTransactionsButton.setBounds(10, 261, 214, 22);
@@ -142,6 +154,7 @@ public class Starter {
 		JButton btnNewButton = new JButton("Get the Console back :)");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				console.out("Making the console reappearing");
 				console.MakeVisible();
 			}
 		});

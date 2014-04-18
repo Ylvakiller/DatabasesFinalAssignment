@@ -14,10 +14,10 @@ public class Console {
 		jf = new JFrame("");
 		jf.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		jf.getContentPane().setLayout(null);
-		jf.setSize(700,600);
+		jf.setSize(730,396);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 0, 684, 562);
+		scrollPane.setBounds(0, 0, 714, 358);
 		jf.getContentPane().add(scrollPane);
 		OutputArea = new JTextArea();
 		OutputArea.setLineWrap(true);
@@ -31,7 +31,7 @@ public class Console {
 	/*
 	 * outputs the given string to the textarea
 	 */
-	public void Out(String output){
+	public void out(String output){
 		OutputArea.append(output);
 		OutputArea.append("\n");
 	}
@@ -41,6 +41,11 @@ public class Console {
 	 * makes the console reappear when you closed it
 	 */
 	public void MakeVisible(){
-		jf.setVisible(true);
+		if (jf.isVisible()){
+			this.out("Console already visible!");
+		}else{
+			jf.setVisible(true);
+		}
+		
 	}
 }
