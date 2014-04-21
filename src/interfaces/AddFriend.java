@@ -61,7 +61,7 @@ public class AddFriend {
 					console.errorOut("Name already found");
 					console.errorOut("Failed to add friend");
 					Output.setText("Name already found, failed to add friend");
-				}else if(con.CheckEmail(EmailAddress)){
+				}else if(con.CheckEmail(EmailAddress)==false){
 					console.errorOut("Incorrect email adress");
 					console.errorOut("Failed to add friend");
 					Output.setText("Incorrect email adress, please make sure to spell it correctely.");

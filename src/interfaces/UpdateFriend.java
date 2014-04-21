@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 
 import Console.Console;
 import Database.Communication;
+
 import org.jdesktop.swingx.JXLabel;
 
 public class UpdateFriend {
@@ -24,7 +25,7 @@ public class UpdateFriend {
 	private JTextField NameField;
 	private JTextField EmailField;
 	private JTextField BirthdayField;
-	private Console console;
+	private static Console console;
 	
 	public UpdateFriend(Console Console){
 		console = Console;
@@ -210,11 +211,108 @@ public class UpdateFriend {
 		});
 		
 		UpdateButton.addActionListener(new ActionListener() {
+			
+
 			public void actionPerformed(ActionEvent e) {
 				console.out("Updating the information about this friend");
+				console.out("Checking if the email is valid");
+				if (con.CheckEmail(EmailField.getText())){
+					console.out("Valid email");
+					console.out("Checking for valid birthday");
+					String BirthdayTemp = BirthdayField.getText();
+					if (UpdateFriend.bdayCheck(BirthdayTemp)){
+						
+					}
+				}else{
+					console.errorOut("Invalid email");
+				}
 			}
 		});
 		
 		jf.setVisible(true);
+	}
+	
+	/*
+	 * returns a true if the birthday is both of correct format and of a date that is in the past compared to the database
+	 * also checks whether or not the day can exists at all... much code for that
+	 */
+	private static boolean bdayCheck(String bday){
+		console.out("Checking if the birthday is correct");
+		if(bday.matches("^\\d{4}-\\d{2}-\\d{2}")){								//this is the regular expression of the correct data string
+			String temp = con.GetDateStorred();
+			if((Integer.parseInt(bday.substring(5, 7)))>12){
+				console.errorOut("The value of the month is higher than possible. incorrect birthday");
+				return false;
+			}
+			
+			if((Integer.parseInt(bday.substring(5, 7)))==1 || (Integer.parseInt(bday.substring(5, 7)))==3 || (Integer.parseInt(bday.substring(5, 7)))==5 || (Integer.parseInt(bday.substring(5, 7)))==7 || (Integer.parseInt(bday.substring(5, 7)))==8 || (Integer.parseInt(bday.substring(5, 7)))==10 || (Integer.parseInt(bday.substring(5, 7)))==12){
+				if ((Integer.parseInt(bday.substring(5, 7)))>31){
+					console.errorOut("The day is higher than the month can handle, incorrect date");
+					return false;
+				}
+			}
+			
+			if((Integer.parseInt(bday.substring(5, 7)))==4 || (Integer.parseInt(bday.substring(5, 7)))==6 || (Integer.parseInt(bday.substring(5, 7)))==9 || (Integer.parseInt(bday.substring(5, 7)))==11){
+				if ((Integer.parseInt(bday.substring(5, 7)))>30){
+					console.errorOut("The day is higher than the month can handle, incorrect date");
+					return false;
+				}
+			}
+			
+			
+			if((Integer.parseInt(bday.substring(5, 7)))==2){
+				if (Integer.parseInt(bday.substring(0, 4))%400==0){
+					if ((Integer.parseInt(bday.substring(5, 7)))>29){
+						console.errorOut("The day is higher than the month can handle, incorrect date");
+						return false;
+					}
+				}else if(Integer.parseInt(bday.substring(0, 4))%100==0){
+					if ((Integer.parseInt(bday.substring(5, 7)))>28){
+						console.errorOut("The day is higher than the month can handle, incorrect date");
+						return false;
+					}
+				}else if(Integer.parseInt(bday.substring(0, 4))%100==0){
+					if ((Integer.parseInt(bday.substring(5, 7)))>29){
+						console.errorOut("The day is higher than the month can handle, incorrect date");
+						return false;
+					}
+				}else{
+					if ((Integer.parseInt(bday.substring(5, 7)))>28){
+						console.errorOut("The day is higher than the month can handle, incorrect date");
+						return false;
+					}
+				}
+				
+			}
+			
+			
+			if (Integer.parseInt(temp.substring(0, 4))==Integer.parseInt(bday.substring(0, 4))){
+				if(Integer.parseInt(temp.substring(5, 7))==Integer.parseInt(bday.substring(5, 7))){
+					if(Integer.parseInt(temp.substring(5, 7))>=Integer.parseInt(bday.substring(5, 7))){
+						console.out("Yup, looks fine");
+						return true;
+					}else{
+						console.errorOut("The given birthday is in the future compared to the birthday in the database... therefore it is incorrect");
+						return false;
+					}
+				}else if(Integer.parseInt(temp.substring(5, 7))>Integer.parseInt(bday.substring(5, 7))){
+					console.out("Yup, looks fine");
+					return true;
+				}else{
+					console.errorOut("The given birthday is in the future compared to the birthday in the database... therefore it is incorrect");
+					return false;
+				}
+			}else if(Integer.parseInt(temp.substring(0, 4))>Integer.parseInt(bday.substring(0, 4))){
+				console.out("Yup, looks fine");
+				return true;
+			}else{
+				console.errorOut("The given birthday is in the future compared to the birthday in the database... therefore it is incorrect");
+				return false;
+			}	
+		}else{
+			console.errorOut("Incorrect format");
+			return false;
+		}
+		
 	}
 }

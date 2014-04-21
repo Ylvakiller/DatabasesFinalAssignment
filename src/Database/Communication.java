@@ -61,7 +61,7 @@ public class Communication {
 	public boolean SetDateStorred(String temp){
 		this.connect();
 		int linesChanged = 0;
-		System.out.println("Setting the database date to :" + temp);
+		console.out("Setting the database date to :" + temp);
 		String querry = "INSERT INTO date (`date`)VALUES('" + temp + "')";
 		try{
 			Statement setDateStatement = con.createStatement();
@@ -241,7 +241,7 @@ public class Communication {
 	}
 	
 	/*
-	 * returns true if the String email is not a correct email
+	 * returns false if the String email is not a correct email
 	 * sidenote , might move this class to Communication so I can use it in multiple classes, unsure yet
 	 */
 	public boolean CheckEmail(String email){
@@ -249,13 +249,13 @@ public class Communication {
 		int index2 = 0;
 		index1 = email.indexOf('@');
 		if (index1 == 0){
-			return true;
+			return false;
 		}else{
 			index2 = email.lastIndexOf('.');
 			if (index1>index2){
-				return true;
-			}else{
 				return false;
+			}else{
+				return true;
 			}
 		}
 	}

@@ -29,7 +29,7 @@ public class DateChanger {
 		
 		JFrame jf = new JFrame("Database assignment");
 		jf.setSize(490,155);
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		jf.getContentPane().setLayout(null);
 		
 		con = new Communication(console);
