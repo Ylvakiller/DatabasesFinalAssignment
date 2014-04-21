@@ -197,7 +197,6 @@ public class Communication {
 	 * will return a true if the change was succesfull
 	 */
 	public boolean DeactivateFriend(String name){
-		
 		this.connect();
 		int linesChanged = 0;
 		String querry = "UPDATE `friends` SET `active`='0' WHERE (`u_name`='" + name + "')" ;
@@ -211,14 +210,31 @@ public class Communication {
 		this.close();
 		
 		if (linesChanged==0){
-			
 			return false;
 		}else{
-			
 			return true;
 		}
-		
-		
 	}
+	
+	/*
+	 * returns the value of the field active in the table friends where the u_name = name
+	 */
+	public boolean CheckActiveFriend(String name){
+		this.connect();
+		boolean temp = true;
+		String querry = "SELECT `active` FROM `friends` WHERE (`u_name`='" + name + "')";
+		try{
+			Statement dataStmnt = con.createStatement();
+			ResultSet dataRss = dataStmnt.executeQuery(querry);
+			dataRss.next();
+			temp = dataRss.getBoolean(1);
+			dataRss.close();
+			
+		} catch (SQLException e2){
+			console.errorOut(e2.toString());
+		}
+		return temp;
+	}
+	
 
 }

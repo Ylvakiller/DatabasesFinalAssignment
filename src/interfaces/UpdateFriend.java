@@ -139,8 +139,14 @@ public class UpdateFriend {
 					NameField.setText(tempData[0]);
 					BirthdayField.setText(tempData[1]);
 					EmailField.setText(tempData[2]);
-					console.out("Adding the button to allow for deactivation of this friend");
-					DeactivateButton.setVisible(true);
+					if(con.CheckActiveFriend(FriendNameString)){
+						console.out("Friend is active, adding the button to deactivate him");
+						DeactivateButton.setVisible(true);
+					}else{
+						console.out("Friend already inactive, no need to add button to deactivate him");
+					}
+					
+					
 				}else{
 					console.errorOut("Name not found in the database, sending error to user");
 					errorLabel.setVisible(true);
@@ -170,6 +176,7 @@ public class UpdateFriend {
 			public void actionPerformed(ActionEvent e) {
 				console.out("Apperently you reconsiderend and do not want to deactivate this friend");
 				console.out("Hiding the deactivation UI and making the button reappear");
+				DeactivateButton.setVisible(true);
 				checkL.setVisible(false);
 				checkN.setVisible(false);
 				checkY.setVisible(false);
@@ -181,6 +188,10 @@ public class UpdateFriend {
 				console.out("Okay so we are sure you want to deactivate this friend... lets do that :D");
 				if (con.DeactivateFriend(FriendNameString)){
 					console.out("Succesfully changed the active value of " + FriendNameString + " to inactive");
+					console.out("Hiding the buttons that will deactivate the friend");
+					checkL.setVisible(false);
+					checkN.setVisible(false);
+					checkY.setVisible(false);
 				}else{
 					console.errorOut("Unsuccesfully changed the active value of " + FriendNameString + " to inactive");
 				}
