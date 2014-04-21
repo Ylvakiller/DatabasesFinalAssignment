@@ -61,7 +61,7 @@ public class AddFriend {
 					console.errorOut("Name already found");
 					console.errorOut("Failed to add friend");
 					Output.setText("Name already found, failed to add friend");
-				}else if(AddFriend.CheckEmail(EmailAddress)){
+				}else if(con.CheckEmail(EmailAddress)){
 					console.errorOut("Incorrect email adress");
 					console.errorOut("Failed to add friend");
 					Output.setText("Incorrect email adress, please make sure to spell it correctely.");
@@ -195,25 +195,5 @@ public class AddFriend {
 		
 	}
 	
-	/*
-	 * returns true if the String email is not a correct email
-	 * sidenote , might move this class to Communication so I can use it in multiple classes, unsure yet
-	 */
-	private static boolean CheckEmail(String email){
-		int index1 = 0;
-		int index2 = 0;
-		index1 = email.indexOf('@');
-		if (index1 == 0){
-			return true;
-		}else{
-			index2 = email.lastIndexOf('.');
-			if (index1>index2){
-				return true;
-			}else{
-				return false;
-			}
-		}
-		
-		
-	}
+	
 }

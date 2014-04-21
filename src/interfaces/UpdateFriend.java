@@ -105,7 +105,7 @@ public class UpdateFriend {
 		final JXLabel checkL = new JXLabel();
 		checkL.setFont(new Font("Tahoma", Font.BOLD, 14));
 		checkL.setText("Are you absolutely sure?");
-		checkL.setBounds(242, 125, 170, 20);
+		checkL.setBounds(242, 105, 170, 20);
 		jf.getContentPane().add(checkL);
 		checkL.setVisible(false);
 		
@@ -113,7 +113,7 @@ public class UpdateFriend {
 		
 		checkY.setLabel("Yes!");
 		checkY.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		checkY.setBounds(242, 145, 75, 22);
+		checkY.setBounds(242, 125, 75, 22);
 		jf.getContentPane().add(checkY);
 		checkY.setVisible(false);
 		
@@ -121,10 +121,17 @@ public class UpdateFriend {
 		
 		checkN.setLabel("NOOO");
 		checkN.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		checkN.setBounds(242, 170, 75, 22);
-		jf.getContentPane().add(checkN);
-		jf.setVisible(true);
+		checkN.setBounds(242, 150, 75, 22);
 		checkN.setVisible(false);
+		jf.getContentPane().add(checkN);
+		
+		final Button UpdateButton = new Button("Update this friend");
+		
+		UpdateButton.setBounds(242, 136, 139, 23);
+		UpdateButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		jf.getContentPane().add(UpdateButton);
+		UpdateButton.setVisible(false);
+		
 		
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -139,9 +146,13 @@ public class UpdateFriend {
 					NameField.setText(tempData[0]);
 					BirthdayField.setText(tempData[1]);
 					EmailField.setText(tempData[2]);
+					console.out("Adding button to update info about this friend");
+					UpdateButton.setVisible(true);
+					console.out("Checking if the friend is active");
 					if(con.CheckActiveFriend(FriendNameString)){
 						console.out("Friend is active, adding the button to deactivate him");
 						DeactivateButton.setVisible(true);
+						
 					}else{
 						console.out("Friend already inactive, no need to add button to deactivate him");
 					}
@@ -198,5 +209,12 @@ public class UpdateFriend {
 			}
 		});
 		
+		UpdateButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				console.out("Updating the information about this friend");
+			}
+		});
+		
+		jf.setVisible(true);
 	}
 }

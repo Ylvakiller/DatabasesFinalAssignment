@@ -236,5 +236,29 @@ public class Communication {
 		return temp;
 	}
 	
+	public boolean FriendUpdater(String name, String birthday, String Email){
+		return false;
+	}
+	
+	/*
+	 * returns true if the String email is not a correct email
+	 * sidenote , might move this class to Communication so I can use it in multiple classes, unsure yet
+	 */
+	public boolean CheckEmail(String email){
+		int index1 = 0;
+		int index2 = 0;
+		index1 = email.indexOf('@');
+		if (index1 == 0){
+			return true;
+		}else{
+			index2 = email.lastIndexOf('.');
+			if (index1>index2){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
+	
 
 }
