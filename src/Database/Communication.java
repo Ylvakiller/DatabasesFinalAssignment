@@ -191,5 +191,34 @@ public class Communication {
 			console.errorOut(e.toString());
 		}
 	}
+	
+	/*
+	 * will change the active value of a friend to 0, where friend is name
+	 * will return a true if the change was succesfull
+	 */
+	public boolean DeactivateFriend(String name){
+		
+		this.connect();
+		int linesChanged = 0;
+		String querry = "UPDATE `friends` SET `active`='0' WHERE (`u_name`='" + name + "')" ;
+		try{
+			Statement addFriendStmt = con.createStatement();
+			linesChanged = addFriendStmt.executeUpdate(querry);
+			addFriendStmt.close();
+		}catch (SQLException e1){
+			console.errorOut(e1.toString());
+		}
+		this.close();
+		
+		if (linesChanged==0){
+			
+			return false;
+		}else{
+			
+			return true;
+		}
+		
+		
+	}
 
 }

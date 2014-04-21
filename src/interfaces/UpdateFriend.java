@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 
 import Console.Console;
 import Database.Communication;
+import org.jdesktop.swingx.JXLabel;
 
 public class UpdateFriend {
 	private JTextField searchField;
@@ -31,7 +32,7 @@ public class UpdateFriend {
 		con = new Communication(console);
 		final JFrame jf = new JFrame("Database assignment");
 		jf.getContentPane().setLayout(null);
-		jf.setSize(366,255);
+		jf.setSize(533,255);
 		jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		searchField = new JTextField();
@@ -94,7 +95,36 @@ public class UpdateFriend {
 		errorLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		errorLabel.setBounds(11, 198, 329, 14);
 		jf.getContentPane().add(errorLabel);
+		
+		final Button DeactivateButton = new Button("Deactivate this friend");
+		DeactivateButton.setVisible(false);
+		DeactivateButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		DeactivateButton.setBounds(242, 104, 135, 23);
+		jf.getContentPane().add(DeactivateButton);
+		
+		final JXLabel checkL = new JXLabel();
+		checkL.setFont(new Font("Tahoma", Font.BOLD, 14));
+		checkL.setText("Are you absolutely sure?");
+		checkL.setBounds(242, 125, 170, 20);
+		jf.getContentPane().add(checkL);
+		checkL.setVisible(false);
+		
+		final Button checkY = new Button();
+		
+		checkY.setLabel("Yes!");
+		checkY.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		checkY.setBounds(242, 145, 75, 22);
+		jf.getContentPane().add(checkY);
+		checkY.setVisible(false);
+		
+		final Button checkN = new Button();
+		
+		checkN.setLabel("NOOO");
+		checkN.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		checkN.setBounds(242, 170, 75, 22);
+		jf.getContentPane().add(checkN);
 		jf.setVisible(true);
+		checkN.setVisible(false);
 		
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -109,6 +139,8 @@ public class UpdateFriend {
 					NameField.setText(tempData[0]);
 					BirthdayField.setText(tempData[1]);
 					EmailField.setText(tempData[2]);
+					console.out("Adding the button to allow for deactivation of this friend");
+					DeactivateButton.setVisible(true);
 				}else{
 					console.errorOut("Name not found in the database, sending error to user");
 					errorLabel.setVisible(true);
@@ -116,8 +148,44 @@ public class UpdateFriend {
 					NameField.setText(null);
 					BirthdayField.setText(null);
 					EmailField.setText(null);
+					console.out("Making sure the button to deactivate a friend is removed");
+					DeactivateButton.setVisible(false);
 				}
 			}
 		});
+		
+		
+		DeactivateButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				console.out("Adding UI to make sure that the user wants to deactivate a friend");
+				console.out("Hiding the button to deactivate a friend");
+				DeactivateButton.setVisible(false);
+				checkL.setVisible(true);
+				checkN.setVisible(true);
+				checkY.setVisible(true);
+			}
+		});
+		
+		checkN.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				console.out("Apperently you reconsiderend and do not want to deactivate this friend");
+				console.out("Hiding the deactivation UI and making the button reappear");
+				checkL.setVisible(false);
+				checkN.setVisible(false);
+				checkY.setVisible(false);
+			}
+		});
+		
+		checkY.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				console.out("Okay so we are sure you want to deactivate this friend... lets do that :D");
+				if (con.DeactivateFriend(FriendNameString)){
+					console.out("Succesfully changed the active value of " + FriendNameString + " to inactive");
+				}else{
+					console.errorOut("Unsuccesfully changed the active value of " + FriendNameString + " to inactive");
+				}
+			}
+		});
+		
 	}
 }
