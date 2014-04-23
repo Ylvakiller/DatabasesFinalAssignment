@@ -260,5 +260,26 @@ public class Communication {
 		}
 	}
 	
+	
+	public String[] getBalance(String name){
+		String[] returnString = {"null", "null", "null"};
+		this.connect();
+		String querry = "SELECT `u_name`,`balance` FROM `friends` WHERE (`u_name`='" + name + "')";
+		try{
+			Statement dataStmnt = con.createStatement();
+			ResultSet dataRss = dataStmnt.executeQuery(querry);
+			dataRss.next();
+			returnString[0] = dataRss.getString(1);
+			int tempint = dataRss.getInt(2);
+			returnString[1] = Integer.toString(tempint);
+			dataRss.close();
+			console.out("Succesfully retrieved date from database");
+		} catch (SQLException e2){
+			console.errorOut(e2.toString());
+		}
+		this.close();
+		return returnString;
+	}
+	
 
 }

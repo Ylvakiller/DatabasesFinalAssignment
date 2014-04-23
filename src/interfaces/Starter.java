@@ -70,23 +70,24 @@ public class Starter {
 		UpdateFriendButton.setBounds(10, 63, 214, 22);
 		jf.getContentPane().add(UpdateFriendButton);
 		
-		Button FriendPayButton = new Button("Make a friend pay for something");
-		FriendPayButton.addActionListener(new ActionListener() {
+		Button DepositButton = new Button("Do a deposit");
+		DepositButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				console.out("Not yet implemented");
+				console.out("Opening the deposit window");
+				new Deposit(console);
 			}
 		});
-		FriendPayButton.setBounds(10, 85, 214, 22);
-		jf.getContentPane().add(FriendPayButton);
+		DepositButton.setBounds(10, 85, 214, 22);
+		jf.getContentPane().add(DepositButton);
 		
-		Button FriendDepositButton = new Button("Make a friend do a general deposit");
-		FriendDepositButton.addActionListener(new ActionListener() {
+		Button PaymentButton = new Button("Pay an activity");
+		PaymentButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				console.out("Not yet implemented");
 			}
 		});
-		FriendDepositButton.setBounds(10, 107, 214, 22);
-		jf.getContentPane().add(FriendDepositButton);
+		PaymentButton.setBounds(10, 107, 214, 22);
+		jf.getContentPane().add(PaymentButton);
 		
 		Button FriendDebtButton = new Button("See what a friend needs to pay");
 		FriendDebtButton.addActionListener(new ActionListener() {
