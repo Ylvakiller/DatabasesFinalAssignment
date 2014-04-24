@@ -260,7 +260,9 @@ public class Communication {
 		}
 	}
 	
-	
+	/*
+	 * test2
+	 */
 	public String[] getBalance(String name){
 		String[] returnString = {"null", "null", "null"};
 		this.connect();
