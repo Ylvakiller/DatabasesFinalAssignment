@@ -144,6 +144,7 @@ public class Deposit {
 				int tempInt1 = tempString.indexOf(".");
 				tempString = tempString.substring(0, (tempInt1 + 4));
 				console.out("tempString is : " + tempString);
+				@SuppressWarnings("unused")
 				float tempF = Float.parseFloat(tempString);
 			}
 		});
