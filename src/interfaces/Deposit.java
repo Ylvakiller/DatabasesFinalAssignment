@@ -149,8 +149,10 @@ public class Deposit {
 				console.out("tempString is : " + tempString);
 				float tempF = Float.parseFloat(tempString);
 				con.Depositer(nameSearch, tempF);
-				
-				
+				console.out("Updating the labels");
+				String [] tempData = con.getBalance(nameSearch);
+				nameLabel.setText(tempData[0]);
+				balanceLabel.setText(tempData[1]);
 			}
 		});
 	}
