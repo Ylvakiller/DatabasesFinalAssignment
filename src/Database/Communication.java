@@ -123,6 +123,7 @@ public class Communication {
 		this.close();
 		return duplicate;
 	}
+	
 	/*
 	 * Returns true if the given email is already in the database
 	 */
@@ -292,18 +293,21 @@ public class Communication {
 	public boolean Depositer(String name, float amount){
 		console.out("Calculating new balance");
 		String[] temp = this.getBalance(name);
+		
 		boolean bool = false;
 		float balance = Float.parseFloat(temp[1]);
+		console.out("Old balance is : " + balance);
 		float newBalance = balance + amount;
+		console.out("New balance is : " + newBalance);
 		console.out("Obtaining date from database");
 		String date = this.GetDateStorred();
-		String querry1 = "UPDATE `friends` SET `balance`=" + newBalance + " WHERE `u_name`=" + name;
+		String querry1 = "UPDATE `friends` SET `balance`=" + newBalance + " WHERE (`u_name`='" + name + "')";
 		String querry2 = "INSERT INTO deposits (`u_name`,`date`,`amount`)VALUES('"+ name + "','" + date +"','" + amount + "')";
 		console.out("Attempting to do a deposit");
 		this.connect();
 		
 		try{
-			
+			con.setAutoCommit(false);
 			Statement stmt1 = con.prepareStatement(querry1);
 			Statement stmt2 = con.prepareStatement(querry2);
 			console.out("Setting the balance of " + name + " to " + newBalance);
@@ -314,6 +318,11 @@ public class Communication {
 			bool = true;
 			console.out("Succesfully deposited " + amount + " to the account of " + name);
 		}catch (SQLException e2){
+			try {
+				con.rollback();
+			} catch (SQLException e) {
+				console.errorOut(e.getMessage());
+			}
 			console.errorOut(e2.toString());
 			bool = false;
 		}
