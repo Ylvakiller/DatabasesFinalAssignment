@@ -141,10 +141,16 @@ public class Deposit {
 		DepositButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String tempString = depositField.getText();
-				int tempInt1 = tempString.indexOf(".");
-				tempString = tempString.substring(0, (tempInt1 + 4));
+				int tempInt1 = 0;
+				tempInt1 = tempString.indexOf(".");
+				if ((tempInt1+3)<tempString.length()){
+					tempString = tempString.substring(0, (tempInt1 + 3));
+				}
 				console.out("tempString is : " + tempString);
 				float tempF = Float.parseFloat(tempString);
+				con.Depositer(nameSearch, tempF);
+				
+				
 			}
 		});
 	}

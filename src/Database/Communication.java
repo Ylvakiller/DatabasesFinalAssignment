@@ -123,6 +123,7 @@ public class Communication {
 		this.close();
 		return duplicate;
 	}
+	
 	/*
 	 * Returns true if the given email is already in the database
 	 */
@@ -145,7 +146,6 @@ public class Communication {
 	/*
 	 * returns a string array with in that the name, birthday and email that corresponds to the name of the variable name that has been put into this method
 	 */
-	
 	public String[] GetDataFromName(String name){
 		String[] returnString = {"null", "null", "null"};
 		this.connect();
@@ -260,9 +260,13 @@ public class Communication {
 		}
 	}
 	
-	
+	/*
+	 * returns a string array with in the first place the name, then the balance in a float
+	 * needs a name, the return name is just as an extra check
+	 */
 	public String[] getBalance(String name){
 		String[] returnString = {"null", "null", "null"};
+		console.out("Retrieving balance of " + name);
 		this.connect();
 		String querry = "SELECT `u_name`,`balance` FROM `friends` WHERE (`u_name`='" + name + "')";
 		try{
@@ -270,10 +274,10 @@ public class Communication {
 			ResultSet dataRss = dataStmnt.executeQuery(querry);
 			dataRss.next();
 			returnString[0] = dataRss.getString(1);
-			int tempint = dataRss.getInt(2);
-			returnString[1] = Integer.toString(tempint);
+			float tempint = dataRss.getFloat(2);
+			returnString[1] = Float.toString(tempint);
 			dataRss.close();
-			console.out("Succesfully retrieved date from database");
+			console.out("Succesfully retrieved data from database");
 		} catch (SQLException e2){
 			console.errorOut(e2.toString());
 		}
@@ -281,5 +285,49 @@ public class Communication {
 		return returnString;
 	}
 	
+	/*
+	 * returns a true if the deposit is succesful
+	 * calculates the new balance of the specific name, gets the date storred in the db to use in the deposit log
+	 * uses an amount (can be both positive and negative) which is the amount that someone wants to deposit and a name to know on which account it can be deposited
+	 */
+	public boolean Depositer(String name, float amount){
+		console.out("Calculating new balance");
+		String[] temp = this.getBalance(name);
+		
+		boolean bool = false;
+		float balance = Float.parseFloat(temp[1]);
+		console.out("Old balance is : " + balance);
+		float newBalance = balance + amount;
+		console.out("New balance is : " + newBalance);
+		console.out("Obtaining date from database");
+		String date = this.GetDateStorred();
+		String querry1 = "UPDATE `friends` SET `balance`=" + newBalance + " WHERE (`u_name`='" + name + "')";
+		String querry2 = "INSERT INTO deposits (`u_name`,`date`,`amount`)VALUES('"+ name + "','" + date +"','" + amount + "')";
+		console.out("Attempting to do a deposit");
+		this.connect();
+		
+		try{
+			con.setAutoCommit(false);
+			Statement stmt1 = con.prepareStatement(querry1);
+			Statement stmt2 = con.prepareStatement(querry2);
+			console.out("Setting the balance of " + name + " to " + newBalance);
+			stmt1.executeUpdate(querry1);
+			console.out("Adding the deposit to the deposit log");
+			stmt2.executeUpdate(querry1);
+			con.commit();
+			bool = true;
+			console.out("Succesfully deposited " + amount + " to the account of " + name);
+		}catch (SQLException e2){
+			try {
+				con.rollback();
+			} catch (SQLException e) {
+				console.errorOut(e.getMessage());
+			}
+			console.errorOut(e2.toString());
+			bool = false;
+		}
+		this.close();
+		return bool;
+	}
 
 }
