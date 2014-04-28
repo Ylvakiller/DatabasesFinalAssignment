@@ -4,14 +4,19 @@ import javax.swing.JFrame;
 
 import Console.Console;
 import Database.Communication;
+
 import org.jdesktop.swingx.JXLabel;
+
 import java.awt.Font;
+
 import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.swingx.JXTextField;
 import org.jdesktop.swingx.JXButton;
 import org.jdesktop.swingx.JXLabel.TextAlignment;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
 
 public class AddActivity {
 
@@ -60,7 +65,7 @@ public class AddActivity {
 		datePicker.setBounds(89, 78, 112, 22);
 		jf.getContentPane().add(datePicker);
 		
-		JXDatePicker datePicker_1 = new JXDatePicker();
+		final JXDatePicker datePicker_1 = new JXDatePicker();
 		datePicker_1.setBounds(89, 108, 112, 22);
 		jf.getContentPane().add(datePicker_1);
 		
@@ -74,9 +79,10 @@ public class AddActivity {
 		JXButton btnAddThisActivity = new JXButton();
 		btnAddThisActivity.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 				name = textField.getText();
-				startD = datePicker.toString();
-				endD = datePicker.toString();
+				startD =  format.format(datePicker.getDate());
+				endD = format.format(datePicker_1.getDate());
 				if (name.isEmpty()){
 					console.errorOut("No name found, giving feedback to user.");
 					ErrorLbl.setText("You have to enter a name...");
@@ -95,8 +101,12 @@ public class AddActivity {
 					console.out("Attempting to add this activity to the database");
 					if (con.AddActivity(name, startD, endD)){
 						console.out("Succesfully added activity to the database");
+						ErrorLbl.setText("Added this activity");
+						ErrorLbl.setVisible(true);
 					}else{
 						console.out("Unsuccesfully added this activity... something went wrong apparentely");
+						ErrorLbl.setText("Something went wrong :O");
+						ErrorLbl.setVisible(true);
 					}
 				}
 			}

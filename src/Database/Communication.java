@@ -330,9 +330,28 @@ public class Communication {
 		return bool;
 	}
 
+	/*
+	 * adds an activity with the name a_name, and the start and end date
+	 * returns true if succesfully added
+	 */
 	public boolean AddActivity(String a_name, String startD, String endD){
+		this.connect();
+		int linesChanged = 0;
+		String querry = "INSERT INTO activities (`a_name`,`date_start`,`date_end`)VALUES('"+ a_name + "','" + startD +"','" + endD + "')";
+		try{
+			Statement addFriendStmt = con.createStatement();
+			linesChanged = addFriendStmt.executeUpdate(querry);
+			addFriendStmt.close();
+		}catch (SQLException e1){
+			console.errorOut(e1.toString());
+		}
+		this.close();
 		
+		if (linesChanged==0){
+			return false;
+		}else{
+			return true;
+		}
 		
-		return false;
 	}
 }
