@@ -330,4 +330,9 @@ public class Communication {
 		return bool;
 	}
 
+	public boolean AddActivity(String a_name, String startD, String endD){
+		
+		
+		return false;
+	}
 }
