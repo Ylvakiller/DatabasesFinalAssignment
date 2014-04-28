@@ -26,7 +26,7 @@ public class Deposit {
 	private static Communication con;
 	static JLabel nameLabel;
 	String nameSearch;
-	static JFrame jf;
+	private static JFrame jf;
 	JLabel balanceLabel;
 	private JTextField depositField;
 	
