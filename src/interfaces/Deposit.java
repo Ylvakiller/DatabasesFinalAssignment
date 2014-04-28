@@ -19,6 +19,10 @@ import org.jdesktop.swingx.JXLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/*
+ * Allows someone to see the balance of someone and do a deposit for that person.
+ * needs the overal console
+ */
 public class Deposit {
 
 	private static Console console;

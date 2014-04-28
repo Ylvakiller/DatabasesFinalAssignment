@@ -8,6 +8,10 @@ import java.awt.Color;
 import java.util.Calendar;
 import java.util.Date;
 
+/*
+ * Opens the console and provides some methods for other classes.
+ * Only one console should be used and should be given to subclasses if they are to have console functionality
+ */
 public class Console {
 
 	private JTextArea OutputArea;

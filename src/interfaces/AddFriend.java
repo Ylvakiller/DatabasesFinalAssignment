@@ -26,7 +26,9 @@ import Console.Console;
 import Database.Communication;
 
 
-
+/*
+ * Opens a window to allow the user to add a friend, needs the overall console
+ */
 public class AddFriend {
 	private static JTextField Email;
 	private static String Nickname, EmailAddress, BirthDay;

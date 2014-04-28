@@ -5,13 +5,9 @@ import Console.Console;
 
 /**
  * 
- * @author Remco Geuze
  * This class is the only class that has any communication to the database,
  * Other classes may run different methods that will either change data or retrieve data from the database
  */
-
-
-
 public class Communication {
 	
 	private final String hostname = "jdbc:mysql://localhost/";

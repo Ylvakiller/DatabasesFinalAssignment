@@ -19,7 +19,9 @@ import java.awt.event.ActionEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
+/*
+ * Opens a window to add an activity, uses the console
+ */
 public class AddActivity {
 
 	private static Console console;

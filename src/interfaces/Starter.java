@@ -13,7 +13,11 @@ import Console.Console;
 import java.awt.Button;
 import java.awt.Font;
 
-
+/*
+ * main class, opens a window with buttons to open up all the other windows, starts up the console.
+ * uses actionlisteners to make all the other windows. sends it's console around as overall console.
+ * has a small button to make the console reappear, is the only window that shuts down the program when closed
+ */
 public class Starter {
 
 	public static void main(String[] args){

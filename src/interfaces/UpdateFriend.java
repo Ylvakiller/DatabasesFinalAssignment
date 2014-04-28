@@ -18,6 +18,10 @@ import Database.Communication;
 
 import org.jdesktop.swingx.JXLabel;
 
+/*
+ * allows you to search for a friend, and then get his details (does not provide balance or other financial details)
+ * allows you to deactivate a friend, does not yet provide update functionality
+ */
 public class UpdateFriend {
 	private JTextField searchField;
 	private String FriendNameString;

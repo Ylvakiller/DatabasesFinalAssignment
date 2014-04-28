@@ -16,7 +16,9 @@ import org.jdesktop.swingx.JXButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
+/*
+ * Opens a window to change the date in the database, needs the overall console
+ */
 public class DateChanger {
 	private final JXDatePicker datePicker = new JXDatePicker();
 	String uDate = "Incorrectly Entered";
