@@ -36,7 +36,7 @@ public class Console {
 	}
 	
 	/*
-	 * Outputs the given string to the textarea using an [INFO] block
+	 * Outputs the given string to the console using an [INFO] block
 	 * for printing out errors see errorOut
 	 */
 	public void out(String output){

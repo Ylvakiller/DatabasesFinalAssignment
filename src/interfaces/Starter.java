@@ -110,7 +110,8 @@ public class Starter {
 		Button AddActivityButton = new Button("Add an activity");
 		AddActivityButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				console.out("Not yet implemented");
+				console.out("Opening the window to add an activity");
+				new AddActivity(console);
 			}
 		});
 		AddActivityButton.setBounds(10, 173, 214, 22);
