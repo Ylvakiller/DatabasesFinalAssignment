@@ -17,6 +17,8 @@ import org.jdesktop.swingx.JXLabel.TextAlignment;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class AddActivity {
 
@@ -83,9 +85,15 @@ public class AddActivity {
 				name = textField.getText();
 				startD =  format.format(datePicker.getDate());
 				endD = format.format(datePicker_1.getDate());
+				Date tempSD = datePicker.getDate();
+				Date tempED = datePicker.getDate();
 				if (name.isEmpty()){
 					console.errorOut("No name found, giving feedback to user.");
 					ErrorLbl.setText("You have to enter a name...");
+					ErrorLbl.setVisible(true);
+				}else if(name.length()>150){
+					console.errorOut("Given name to long, cannot add activity");
+					ErrorLbl.setText("The name you entered is to long (max 150)");
 					ErrorLbl.setVisible(true);
 				}else if(startD.isEmpty()){
 					console.errorOut("No start date found, giving feedback to user.");
@@ -94,6 +102,10 @@ public class AddActivity {
 				}else if(endD.isEmpty()){
 					console.errorOut("No end date found, giving feedback to user.");
 					ErrorLbl.setText("You have to enter an end date");
+					ErrorLbl.setVisible(true);
+				}else if(tempSD.after(tempED)){
+					console.errorOut("You cannot end an activity before starting it");
+					ErrorLbl.setText("Date error, see console for details");
 					ErrorLbl.setVisible(true);
 				}else{
 					console.out("Succesfully retrieved user input");
