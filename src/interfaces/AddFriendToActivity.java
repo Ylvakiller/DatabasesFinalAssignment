@@ -120,11 +120,12 @@ public class AddFriendToActivity {
 		jf.getContentPane().add(btnAddThisFriend);
 		
 		JLabel errorLabel = new JLabel("Error label");
+		errorLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		errorLabel.setBounds(20, 231, 169, 14);
 		jf.getContentPane().add(errorLabel);
 		
 		
 		jf.setVisible(true);
-		console.out("Succesfully opend window to add a friend");
+		console.out("Succesfully opened window to add a friend");
 	}
 }
