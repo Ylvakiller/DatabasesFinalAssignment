@@ -75,6 +75,11 @@ public class AddFriendToActivity {
 					console.errorOut("Invalid entry, you have to enter a name");
 					errorLabel.setText("You have to enter a name!");
 					errorLabel.setVisible(true);
+					nameResultField.setVisible(false);
+					lblName.setVisible(false);
+					if(activityResultField.isVisible()==false){
+						lblTheFollowingInfo.setVisible(false);
+					}
 				}else{
 					console.out("Succesfully retrieved name from interface");
 					console.out("Searching for name in database");
@@ -92,6 +97,11 @@ public class AddFriendToActivity {
 						console.errorOut("Name not found in the database, sending error to user");
 						errorLabel.setText("Name not found in the database, please check for the correct name");
 						errorLabel.setVisible(true);
+						nameResultField.setVisible(false);
+						lblName.setVisible(false);
+						if(activityResultField.isVisible()==false){
+							lblTheFollowingInfo.setVisible(false);
+						}
 					}
 				}
 			}
@@ -121,6 +131,11 @@ public class AddFriendToActivity {
 					console.errorOut("Invalid entry, you have to enter an activity");
 					errorLabel.setText("You have to enter an activity!");
 					errorLabel.setVisible(true);
+					activityResultField.setVisible(false);
+					lblActivity.setVisible(false);
+					if(nameResultField.isVisible()==false){
+						lblTheFollowingInfo.setVisible(false);
+					}
 				}else{
 					console.out("Succesfully retrieved activity from interface");
 					console.out("Searching for activity in database");
@@ -138,6 +153,11 @@ public class AddFriendToActivity {
 						console.errorOut("Activity not found in the database, sending error to user");
 						errorLabel.setText("Activity not found in the database, please check for the correct activity name");
 						errorLabel.setVisible(true);
+						activityResultField.setVisible(false);
+						lblActivity.setVisible(false);
+						if(nameResultField.isVisible()==false){
+							lblTheFollowingInfo.setVisible(false);
+						}
 					}
 				}
 			}
