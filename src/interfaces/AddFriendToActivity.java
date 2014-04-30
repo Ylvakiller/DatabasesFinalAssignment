@@ -44,6 +44,11 @@ public class AddFriendToActivity {
 		final JLabel lblName = new JLabel("Name:");
 		final JXLabel lblTheFollowingInfo = new JXLabel();
 		final JButton btnAddThisFriend = new JButton("Add this friend to this activity");
+		btnAddThisFriend.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				console.out("Finale button has been pressed");
+			}
+		});
 		final JLabel lblActivity = new JLabel("Activity:");
 		
 		JXLabel lblThisScreenWill = new JXLabel();
@@ -83,13 +88,26 @@ public class AddFriendToActivity {
 					console.out("Searching for name in database");
 					if (con.GetNameExcists(name)){
 						console.out("Succesfully found name in the database");
-						errorLabel.setVisible(false);
-						nameResultField.setText(name);
-						nameResultField.setVisible(true);
-						lblName.setVisible(true);
-						lblTheFollowingInfo.setVisible(true);
-						if(activityResultField.isVisible()){
-							btnAddThisFriend.setVisible(true);
+						console.out("Checking if friend is active so can be added to the activity");
+						if (con.CheckActiveFriend(name)){
+							console.out("Friend is active, proceding as planned");
+							errorLabel.setVisible(false);
+							nameResultField.setText(name);
+							nameResultField.setVisible(true);
+							lblName.setVisible(true);
+							lblTheFollowingInfo.setVisible(true);
+							if(activityResultField.isVisible()){
+								btnAddThisFriend.setVisible(true);
+							}
+						}else{
+							console.errorOut("Friend is not active, inable to add this friend to any activity");
+							errorLabel.setText("WARNING friend not active, cannot add friend to activity!");
+							errorLabel.setVisible(true);
+							nameResultField.setVisible(false);
+							lblName.setVisible(false);
+							if(activityResultField.isVisible()==false){
+								lblTheFollowingInfo.setVisible(false);
+							}
 						}
 					}else{
 						console.errorOut("Name not found in the database, sending error to user");

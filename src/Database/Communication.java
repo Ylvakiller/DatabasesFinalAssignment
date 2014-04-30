@@ -301,7 +301,7 @@ public class Communication {
 	}
 	
 	/*
-	 * returns a true if the deposit is succesful
+	 * returns a true if the deposit is successful
 	 * calculates the new balance of the specific name, gets the date storred in the db to use in the deposit log
 	 * uses an amount (can be both positive and negative) which is the amount that someone wants to deposit and a name to know on which account it can be deposited
 	 */
@@ -345,6 +345,7 @@ public class Communication {
 		return bool;
 	}
 
+	
 	/*
 	 * adds an activity with the name a_name, and the start and end date
 	 * returns true if succesfully added
