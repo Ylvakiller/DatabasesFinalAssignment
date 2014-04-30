@@ -124,6 +124,13 @@ public class AddFriendToActivity {
 		errorLabel.setBounds(20, 231, 169, 14);
 		jf.getContentPane().add(errorLabel);
 		
+		errorLabel.setVisible(false);
+		btnAddThisFriend.setVisible(false);
+		ActivityResultField.setVisible(false);
+		lblActivity.setVisible(false);
+		nameResultField.setVisible(false);
+		lblName.setVisible(false);
+		lblTheFollowingInfo.setVisible(false);
 		
 		jf.setVisible(true);
 		console.out("Succesfully opened window to add a friend");
