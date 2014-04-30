@@ -158,14 +158,27 @@ public class AddFriendToActivity {
 					if (con.GetActivityExcisits(activity)){
 						console.out("Succesfully found activity in the database");
 						console.out("Checking if the activity has not yet started");
-						errorLabel.setVisible(false);
-						activityResultField.setText(activity);
-						activityResultField.setVisible(true);
-						lblActivity.setVisible(true);
-						lblTheFollowingInfo.setVisible(true);
-						if(nameResultField.isVisible()){
-							btnAddThisFriend.setVisible(true);
+						if (con.ActivityStarted(activity)==false){
+							console.out("Activity has not yet started, friend can be added");
+							errorLabel.setVisible(false);
+							activityResultField.setText(activity);
+							activityResultField.setVisible(true);
+							lblActivity.setVisible(true);
+							lblTheFollowingInfo.setVisible(true);
+							if(nameResultField.isVisible()){
+								btnAddThisFriend.setVisible(true);
+							}
+						}else{
+							console.errorOut("Activity has started, unable to add anyone to this activity");
+							errorLabel.setText("The activity has already started, you cannot add anyone to it now");
+							errorLabel.setVisible(true);
+							activityResultField.setVisible(false);
+							lblActivity.setVisible(false);
+							if(nameResultField.isVisible()==false){
+								lblTheFollowingInfo.setVisible(false);
+							}
 						}
+						
 					}else{
 						console.errorOut("Activity not found in the database, sending error to user");
 						errorLabel.setText("Activity not found in the database, please check for the correct activity name");
@@ -222,7 +235,7 @@ public class AddFriendToActivity {
 		
 		
 		errorLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		errorLabel.setBounds(10, 231, 195, 14);
+		errorLabel.setBounds(10, 231, 361, 14);
 		jf.getContentPane().add(errorLabel);
 		
 		errorLabel.setVisible(false);

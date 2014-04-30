@@ -392,10 +392,34 @@ public class Communication {
 		
 	}
 
+	/*
+	 * Returns a true if the activity is started
+	 */
 	public boolean ActivityStarted(String a_name){
-		boolean started = true;
+		boolean started;
+		Date dbDate = this.GetDateStorredDateFormat();
+		Date acDate = null;
 		
+		this.connect();
 		
+		String querry = "SELECT `date_start` FROM `activities` WHERE (`a_name`='" + a_name + "')";
+		
+		try {
+			Statement getDateStatement = con.createStatement();
+			ResultSet aDate = getDateStatement.executeQuery(querry);
+			aDate.next();
+			acDate = aDate.getDate(1);
+			aDate.close();
+		} catch (SQLException e1) {
+			console.errorOut(e1.toString());
+		}
+		this.close();
+		
+		if (dbDate.before(acDate)){
+			started = false;
+		}else{
+			started = true;
+		}
 		return started;
 	}
 }
