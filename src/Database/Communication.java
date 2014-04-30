@@ -309,7 +309,8 @@ public class Communication {
 			console.out("Setting the balance of " + name + " to " + newBalance);
 			stmt1.executeUpdate(querry1);
 			console.out("Adding the deposit to the deposit log");
-			stmt2.executeUpdate(querry1);
+			stmt2.executeUpdate(querry2);
+			
 			con.commit();
 			bool = true;
 			console.out("Succesfully deposited " + amount + " to the account of " + name);
