@@ -121,6 +121,25 @@ public class Communication {
 	}
 	
 	/*
+	 * returns true if an activity is already in the database
+	 */
+	public boolean GetActivityExcisits(String Activity){
+		boolean duplicate = true;
+		this.connect();
+		String querry = "SELECT `a_name` FROM `activities` WHERE `a_name`='" + Activity + "'";
+		try{
+			Statement nameStmnt = con.createStatement();
+			ResultSet nameRss = nameStmnt.executeQuery(querry);
+			duplicate = nameRss.next();														//should return a false if the name is not in the database as it doesn't return any rows
+			nameRss.close();
+		} catch (SQLException e2){
+			console.errorOut(e2.toString());
+		}
+		this.close();
+		return duplicate;
+	}
+	
+	/*
 	 * Returns true if the given email is already in the database
 	 */
 	public boolean GetDuplicateEmail(String email){

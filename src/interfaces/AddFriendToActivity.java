@@ -18,17 +18,20 @@ import java.awt.Button;
 import java.awt.Color;
 
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AddFriendToActivity {
 
 
 	private Console console;
-	@SuppressWarnings("unused")
 	private static Communication con;
 	private JTextField friendSearchField;
 	private JTextField activitySearchField;
 	private JTextField nameResultField;
-	private JTextField ActivityResultField;
+	private JTextField activityResultField;
+	
+	String name, activity;
 	
 	public AddFriendToActivity(Console Console){
 		console = Console;
@@ -38,6 +41,12 @@ public class AddFriendToActivity {
 		jf.setSize(396,354);
 		jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		jf.getContentPane().setLayout(null);
+		
+		final JLabel errorLabel = new JLabel("Error label");
+		final JLabel lblName = new JLabel("Name:");
+		final JXLabel lblTheFollowingInfo = new JXLabel();
+		final JButton btnAddThisFriend = new JButton("Add this friend to this activity");
+		final JLabel lblActivity = new JLabel("Activity:");
 		
 		JXLabel lblThisScreenWill = new JXLabel();
 		lblThisScreenWill.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -58,6 +67,35 @@ public class AddFriendToActivity {
 		jf.getContentPane().add(friendSearchField);
 		
 		Button friendSearchButton = new Button("Search");
+		friendSearchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				console.out("Friend search button pressed, retrieving info from the screen");
+				name = friendSearchField.getText();
+				if (name.isEmpty()){
+					console.errorOut("Invalid entry, you have to enter a name");
+					errorLabel.setText("You have to enter a name!");
+					errorLabel.setVisible(true);
+				}else{
+					console.out("Succesfully retrieved name from interface");
+					console.out("Searching for name in database");
+					if (con.GetNameExcists(name)){
+						console.out("Succesfully found name in the database");
+						errorLabel.setVisible(false);
+						nameResultField.setText(name);
+						nameResultField.setVisible(true);
+						lblName.setVisible(true);
+						lblTheFollowingInfo.setVisible(true);
+						if(activityResultField.isVisible()){
+							btnAddThisFriend.setVisible(true);
+						}
+					}else{
+						console.errorOut("Name not found in the database, sending error to user");
+						errorLabel.setText("Name not found in the database, please check for the correct name");
+						errorLabel.setVisible(true);
+					}
+				}
+			}
+		});
 		friendSearchButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		friendSearchButton.setBounds(171, 46, 60, 22);
 		jf.getContentPane().add(friendSearchButton);
@@ -75,17 +113,46 @@ public class AddFriendToActivity {
 		jf.getContentPane().add(activitySearchField);
 		
 		Button activitySearchButton = new Button("Search");
+		activitySearchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				console.out("Activity search button pressed, retrieving info from the screen");
+				activity = activitySearchField.getText();
+				if (name.isEmpty()){
+					console.errorOut("Invalid entry, you have to enter an activity");
+					errorLabel.setText("You have to enter an activity!");
+					errorLabel.setVisible(true);
+				}else{
+					console.out("Succesfully retrieved activity from interface");
+					console.out("Searching for activity in database");
+					if (con.GetActivityExcisits(activity)){
+						console.out("Succesfully found activity in the database");
+						errorLabel.setVisible(false);
+						activityResultField.setText(activity);
+						activityResultField.setVisible(true);
+						lblActivity.setVisible(true);
+						lblTheFollowingInfo.setVisible(true);
+						if(nameResultField.isVisible()){
+							btnAddThisFriend.setVisible(true);
+						}
+					}else{
+						console.errorOut("Activity not found in the database, sending error to user");
+						errorLabel.setText("Activity not found in the database, please check for the correct activity name");
+						errorLabel.setVisible(true);
+					}
+				}
+			}
+		});
 		activitySearchButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		activitySearchButton.setBounds(171, 88, 60, 22);
 		jf.getContentPane().add(activitySearchButton);
 		
-		JXLabel lblTheFollowingInfo = new JXLabel();
+		
 		lblTheFollowingInfo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblTheFollowingInfo.setText("The following info was found");
 		lblTheFollowingInfo.setBounds(10, 119, 165, 14);
 		jf.getContentPane().add(lblTheFollowingInfo);
 		
-		JLabel lblName = new JLabel("Name:");
+		
 		lblName.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblName.setHorizontalAlignment(SwingConstants.LEFT);
 		lblName.setBounds(10, 144, 39, 14);
@@ -100,33 +167,33 @@ public class AddFriendToActivity {
 		jf.getContentPane().add(nameResultField);
 		nameResultField.setColumns(10);
 		
-		JLabel lblActivity = new JLabel("Activity:");
+
 		lblActivity.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblActivity.setHorizontalAlignment(SwingConstants.LEFT);
 		lblActivity.setBounds(10, 172, 45, 14);
 		jf.getContentPane().add(lblActivity);
 		
-		ActivityResultField = new JTextField();
-		ActivityResultField.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		ActivityResultField.setEnabled(false);
-		ActivityResultField.setEditable(false);
-		ActivityResultField.setColumns(10);
-		ActivityResultField.setBounds(59, 172, 146, 20);
-		jf.getContentPane().add(ActivityResultField);
+		activityResultField = new JTextField();
+		activityResultField.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		activityResultField.setEnabled(false);
+		activityResultField.setEditable(false);
+		activityResultField.setColumns(10);
+		activityResultField.setBounds(59, 172, 146, 20);
+		jf.getContentPane().add(activityResultField);
 		
-		JButton btnAddThisFriend = new JButton("Add this friend to this activity");
+
 		btnAddThisFriend.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnAddThisFriend.setBounds(10, 197, 195, 23);
 		jf.getContentPane().add(btnAddThisFriend);
 		
-		JLabel errorLabel = new JLabel("Error label");
+		
 		errorLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		errorLabel.setBounds(20, 231, 169, 14);
 		jf.getContentPane().add(errorLabel);
 		
 		errorLabel.setVisible(false);
 		btnAddThisFriend.setVisible(false);
-		ActivityResultField.setVisible(false);
+		activityResultField.setVisible(false);
 		lblActivity.setVisible(false);
 		nameResultField.setVisible(false);
 		lblName.setVisible(false);
