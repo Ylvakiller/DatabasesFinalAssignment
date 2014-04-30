@@ -51,6 +51,27 @@ public class Communication {
 	}
 	
 	/*
+	 * Returns the date in a date file type instead of a string type
+	 */
+	public Date GetDateStorredDateFormat(){
+		Date date = null;
+		this.connect();
+		
+		String querry = "SELECT `date` FROM `date` ORDER BY `datemodified` DESC";
+		
+		try {
+			Statement getDateStatement = con.createStatement();
+			ResultSet dbDate = getDateStatement.executeQuery(querry);
+			dbDate.next();
+			date = dbDate.getDate(1);
+			dbDate.close();
+		} catch (SQLException e1) {
+			console.errorOut(e1.toString());
+		}
+		this.close();
+		return date;
+	}
+	/*
 	 * sets the date to the value of temp
 	 * returns a true if the date was succesfully set
 	 */
@@ -108,6 +129,25 @@ public class Communication {
 		boolean duplicate = true;
 		this.connect();
 		String querry = "SELECT `u_name` FROM `friends` WHERE `u_name`='" + name + "'";
+		try{
+			Statement nameStmnt = con.createStatement();
+			ResultSet nameRss = nameStmnt.executeQuery(querry);
+			duplicate = nameRss.next();														//should return a false if the name is not in the database as it doesn't return any rows
+			nameRss.close();
+		} catch (SQLException e2){
+			console.errorOut(e2.toString());
+		}
+		this.close();
+		return duplicate;
+	}
+	
+	/*
+	 * returns true if an activity is already in the database
+	 */
+	public boolean GetActivityExcisits(String a_name){
+		boolean duplicate = true;
+		this.connect();
+		String querry = "SELECT `a_name` FROM `activities` WHERE `a_name`='" + a_name + "'";
 		try{
 			Statement nameStmnt = con.createStatement();
 			ResultSet nameRss = nameStmnt.executeQuery(querry);
@@ -282,7 +322,7 @@ public class Communication {
 	}
 	
 	/*
-	 * returns a true if the deposit is succesful
+	 * returns a true if the deposit is successful
 	 * calculates the new balance of the specific name, gets the date storred in the db to use in the deposit log
 	 * uses an amount (can be both positive and negative) which is the amount that someone wants to deposit and a name to know on which account it can be deposited
 	 */
@@ -327,6 +367,7 @@ public class Communication {
 		return bool;
 	}
 
+	
 	/*
 	 * adds an activity with the name a_name, and the start and end date
 	 * returns true if succesfully added
@@ -350,5 +391,58 @@ public class Communication {
 			return true;
 		}
 		
+	}
+
+	/*
+	 * Returns a true if the activity is started
+	 */
+	public boolean ActivityStarted(String a_name){
+		boolean started;
+		Date dbDate = this.GetDateStorredDateFormat();
+		Date acDate = null;
+		
+		this.connect();
+		
+		String querry = "SELECT `date_start` FROM `activities` WHERE (`a_name`='" + a_name + "')";
+		
+		try {
+			Statement getDateStatement = con.createStatement();
+			ResultSet aDate = getDateStatement.executeQuery(querry);
+			aDate.next();
+			acDate = aDate.getDate(1);
+			aDate.close();
+		} catch (SQLException e1) {
+			console.errorOut(e1.toString());
+		}
+		this.close();
+		
+		if (dbDate.before(acDate)){
+			started = false;
+		}else{
+			started = true;
+		}
+		return started;
+	}
+	
+	/*
+	 * returns a true if succesfully added a friend to an activity
+	 */
+	public boolean AddFriendToActivity(String u_name, String a_name){
+		int linesChanged= 0;
+		String querry = "INSERT INTO activitiefriends (`a_name`,`u_name`,`date_added`)VALUES('"+ a_name + "','" + u_name +"','" + this.GetDateStorredDateFormat() + "')";
+		try{
+			Statement addFriendStmt = con.createStatement();
+			linesChanged = addFriendStmt.executeUpdate(querry);
+			addFriendStmt.close();
+		}catch (SQLException e1){
+			console.errorOut(e1.toString());
+		}
+		this.close();
+		
+		if (linesChanged==0){
+			return false;
+		}else{
+			return true;
+		}
 	}
 }

@@ -121,10 +121,11 @@ public class Starter {
 		AddActivityButton.setBounds(10, 173, 214, 22);
 		jf.getContentPane().add(AddActivityButton);
 		
-		Button AddFriendToActivityButton = new Button("Get a friend to do an acitivity");
+		Button AddFriendToActivityButton = new Button("Add a friend to an acitivity");
 		AddFriendToActivityButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				console.out("Not yet implemented");
+				console.out("opening window to add a friend to an activity");
+				new AddFriendToActivity(console);
 			}
 		});
 		AddFriendToActivityButton.setBounds(10, 195, 214, 22);
