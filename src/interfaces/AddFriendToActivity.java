@@ -15,8 +15,6 @@ import javax.swing.JTextField;
 
 import java.awt.Button;
 
-import java.awt.Color;
-
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -175,14 +173,12 @@ public class AddFriendToActivity {
 		
 		lblName.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblName.setHorizontalAlignment(SwingConstants.LEFT);
-		lblName.setBounds(10, 144, 39, 14);
+		lblName.setBounds(10, 144, 39, 20);
 		jf.getContentPane().add(lblName);
 		
 		nameResultField = new JTextField();
 		nameResultField.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		nameResultField.setForeground(Color.LIGHT_GRAY);
 		nameResultField.setEditable(false);
-		nameResultField.setEnabled(false);
 		nameResultField.setBounds(59, 144, 146, 20);
 		jf.getContentPane().add(nameResultField);
 		nameResultField.setColumns(10);
@@ -190,12 +186,11 @@ public class AddFriendToActivity {
 
 		lblActivity.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblActivity.setHorizontalAlignment(SwingConstants.LEFT);
-		lblActivity.setBounds(10, 172, 45, 14);
+		lblActivity.setBounds(10, 172, 45, 20);
 		jf.getContentPane().add(lblActivity);
 		
 		activityResultField = new JTextField();
 		activityResultField.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		activityResultField.setEnabled(false);
 		activityResultField.setEditable(false);
 		activityResultField.setColumns(10);
 		activityResultField.setBounds(59, 172, 146, 20);
@@ -208,7 +203,7 @@ public class AddFriendToActivity {
 		
 		
 		errorLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		errorLabel.setBounds(20, 231, 169, 14);
+		errorLabel.setBounds(10, 231, 195, 14);
 		jf.getContentPane().add(errorLabel);
 		
 		errorLabel.setVisible(false);
