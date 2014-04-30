@@ -51,6 +51,27 @@ public class Communication {
 	}
 	
 	/*
+	 * Returns the date in a date file type instead of a string type
+	 */
+	public Date GetDateStorredDateFormat(){
+		Date date = null;
+		this.connect();
+		
+		String querry = "SELECT `date` FROM `date` ORDER BY `datemodified` DESC";
+		
+		try {
+			Statement getDateStatement = con.createStatement();
+			ResultSet dbDate = getDateStatement.executeQuery(querry);
+			dbDate.next();
+			date = dbDate.getDate(1);
+			dbDate.close();
+		} catch (SQLException e1) {
+			console.errorOut(e1.toString());
+		}
+		this.close();
+		return date;
+	}
+	/*
 	 * sets the date to the value of temp
 	 * returns a true if the date was succesfully set
 	 */
@@ -123,10 +144,10 @@ public class Communication {
 	/*
 	 * returns true if an activity is already in the database
 	 */
-	public boolean GetActivityExcisits(String Activity){
+	public boolean GetActivityExcisits(String a_name){
 		boolean duplicate = true;
 		this.connect();
-		String querry = "SELECT `a_name` FROM `activities` WHERE `a_name`='" + Activity + "'";
+		String querry = "SELECT `a_name` FROM `activities` WHERE `a_name`='" + a_name + "'";
 		try{
 			Statement nameStmnt = con.createStatement();
 			ResultSet nameRss = nameStmnt.executeQuery(querry);
@@ -369,5 +390,12 @@ public class Communication {
 			return true;
 		}
 		
+	}
+
+	public boolean ActivityStarted(String a_name){
+		boolean started = true;
+		
+		
+		return started;
 	}
 }

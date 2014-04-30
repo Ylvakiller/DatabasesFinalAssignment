@@ -157,6 +157,7 @@ public class AddFriendToActivity {
 					console.out("Searching for activity in database");
 					if (con.GetActivityExcisits(activity)){
 						console.out("Succesfully found activity in the database");
+						console.out("Checking if the activity has not yet started");
 						errorLabel.setVisible(false);
 						activityResultField.setText(activity);
 						activityResultField.setVisible(true);
