@@ -47,6 +47,14 @@ public class AddFriendToActivity {
 		btnAddThisFriend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				console.out("Finale button has been pressed");
+				console.out("Attempting to add this friend to this activity");
+				if (con.AddFriendToActivity(name, activity)){
+					console.out("Friend succesfull added to activity");
+				}else{
+					console.errorOut("Something went wrong, nooooo");
+					errorLabel.setText("Something went wrong, check the console for details");
+					errorLabel.setVisible(true);
+				}
 			}
 		});
 		final JLabel lblActivity = new JLabel("Activity:");

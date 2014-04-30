@@ -422,4 +422,26 @@ public class Communication {
 		}
 		return started;
 	}
+	
+	/*
+	 * returns a true if succesfully added a friend to an activity
+	 */
+	public boolean AddFriendToActivity(String u_name, String a_name){
+		int linesChanged= 0;
+		String querry = "INSERT INTO activitiefriends (`a_name`,`u_name`,`date_added`)VALUES('"+ a_name + "','" + u_name +"','" + this.GetDateStorredDateFormat() + "')";
+		try{
+			Statement addFriendStmt = con.createStatement();
+			linesChanged = addFriendStmt.executeUpdate(querry);
+			addFriendStmt.close();
+		}catch (SQLException e1){
+			console.errorOut(e1.toString());
+		}
+		this.close();
+		
+		if (linesChanged==0){
+			return false;
+		}else{
+			return true;
+		}
+	}
 }
