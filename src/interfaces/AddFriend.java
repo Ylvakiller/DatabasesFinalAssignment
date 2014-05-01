@@ -1,15 +1,9 @@
 package interfaces;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 import javax.swing.JLabel;
-
-
-
-
 import org.jdesktop.swingx.JXLabel;
 import org.jdesktop.swingx.JXTextField;
 

@@ -1,6 +1,5 @@
 package Database;
 import java.sql.*;
-
 import Console.Console;
 
 /**

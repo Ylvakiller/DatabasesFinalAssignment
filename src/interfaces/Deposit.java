@@ -1,21 +1,14 @@
 package interfaces;
 
 import javax.swing.JFrame;
-
 import Console.Console;
 import Database.Communication;
-
 import javax.swing.JLabel;
-
 import java.awt.Font;
-
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
-
 import java.awt.Button;
-
 import org.jdesktop.swingx.JXLabel;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 

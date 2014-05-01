@@ -3,7 +3,6 @@ package Console;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
-
 import java.awt.Color;
 import java.util.Calendar;
 import java.util.Date;

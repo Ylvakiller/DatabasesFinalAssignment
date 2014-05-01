@@ -2,17 +2,12 @@ package interfaces;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
 import Console.Console;
 import Database.Communication;
-
 import org.jdesktop.swingx.JXDatePicker;
-
 import java.text.SimpleDateFormat;
 import java.awt.Dimension;
-
 import org.jdesktop.swingx.JXButton;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
