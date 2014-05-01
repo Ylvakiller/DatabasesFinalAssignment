@@ -35,7 +35,6 @@ public class Console {
 		OutputArea.setAutoscrolls(true);
 		this.out("Welcome to the console");
 		jf.setVisible(true);
-		
 	}
 	
 	/*

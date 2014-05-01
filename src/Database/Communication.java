@@ -444,4 +444,23 @@ public class Communication {
 			return true;
 		}
 	}
+	
+	/*
+	 * Returns a true if the combo name and activity already excists in the database
+	 */
+	public boolean NameActivityComboExcists(String u_name, String a_name){
+		boolean temp = false;
+		this.connect();
+		String querry = "SELECT `date_added` FROM `activitiefriends` WHERE (`a_name`='" + a_name + " && `u_name`='" + u_name + "')";
+		
+		try {
+			Statement ComboStmt = con.createStatement();
+			ResultSet ComboRss = ComboStmt.executeQuery(querry);
+			temp = ComboRss.next();
+			ComboRss.close();
+		} catch (SQLException e1) {
+			console.errorOut(e1.toString());
+		}
+		return temp;
+	}
 }
