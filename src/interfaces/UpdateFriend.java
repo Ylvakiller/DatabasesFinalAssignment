@@ -1,16 +1,19 @@
 package interfaces;
 
-import javax.swing.JFrame;
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
 import java.awt.Button;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import org.jdesktop.swingx.JXLabel;
+
 import Console.Console;
 import Database.Communication;
-import org.jdesktop.swingx.JXLabel;
 
 /*
  * allows you to search for a friend, and then get his details (does not provide balance or other financial details)

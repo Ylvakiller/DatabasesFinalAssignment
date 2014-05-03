@@ -1,17 +1,20 @@
 package interfaces;
 
+import java.awt.Button;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import org.jdesktop.swingx.JXLabel;
+
 import Console.Console;
 import Database.Communication;
-import org.jdesktop.swingx.JXLabel;
-import java.awt.Font;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import java.awt.Button;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class AddFriendToActivity {
 

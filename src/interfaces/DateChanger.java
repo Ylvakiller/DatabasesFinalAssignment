@@ -1,15 +1,18 @@
 package interfaces;
 
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import org.jdesktop.swingx.JXButton;
+import org.jdesktop.swingx.JXDatePicker;
+
 import Console.Console;
 import Database.Communication;
-import org.jdesktop.swingx.JXDatePicker;
-import java.text.SimpleDateFormat;
-import java.awt.Dimension;
-import org.jdesktop.swingx.JXButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 /*
  * Opens a window to change the date in the database, needs the overall console

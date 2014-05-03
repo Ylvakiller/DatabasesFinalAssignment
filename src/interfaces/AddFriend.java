@@ -1,20 +1,18 @@
 package interfaces;
-import javax.swing.JFrame;
-import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import org.jdesktop.swingx.JXLabel;
-import org.jdesktop.swingx.JXTextField;
-
-import javax.swing.JTextField;
-
-import org.jdesktop.swingx.JXDatePicker;
-
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
 import org.jdesktop.swingx.JXButton;
+import org.jdesktop.swingx.JXDatePicker;
+import org.jdesktop.swingx.JXLabel;
+import org.jdesktop.swingx.JXTextField;
 
 import Console.Console;
 import Database.Communication;

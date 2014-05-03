@@ -1,16 +1,19 @@
 package interfaces;
 
+import java.awt.Button;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import org.jdesktop.swingx.JXLabel;
+
 import Console.Console;
 import Database.Communication;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import java.awt.Button;
-import org.jdesktop.swingx.JXLabel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 /*
  * Allows someone to see the balance of someone and do a deposit for that person.

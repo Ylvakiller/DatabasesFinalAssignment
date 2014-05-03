@@ -1,13 +1,15 @@
 package interfaces;
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import Console.Console;
 import java.awt.Button;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
+import Console.Console;
 
 /*
  * main class, opens a window with buttons to open up all the other windows, starts up the console.

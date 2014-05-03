@@ -1,18 +1,21 @@
 package interfaces;
 
-import javax.swing.JFrame;
-import Console.Console;
-import Database.Communication;
-import org.jdesktop.swingx.JXLabel;
 import java.awt.Font;
-import org.jdesktop.swingx.JXDatePicker;
-import org.jdesktop.swingx.JXTextField;
-import org.jdesktop.swingx.JXButton;
-import org.jdesktop.swingx.JXLabel.TextAlignment;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javax.swing.JFrame;
+
+import org.jdesktop.swingx.JXButton;
+import org.jdesktop.swingx.JXDatePicker;
+import org.jdesktop.swingx.JXLabel;
+import org.jdesktop.swingx.JXLabel.TextAlignment;
+import org.jdesktop.swingx.JXTextField;
+
+import Console.Console;
+import Database.Communication;
 
 /*
  * Opens a window to add an activity, uses the console
