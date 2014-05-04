@@ -124,6 +124,7 @@ public class IncreaseDueActivity {
 					errorLabel.setVisible(false);
 				}else{
 					console.errorOut("Activity not found in the database, sending error to user");
+					errorLabel.setText("Activity not found, please enter a correct name!");
 					errorLabel.setVisible(true);
 					console.out("Making sure the info in the details fields is empty");
 					ActivityLabel.setText(null);
@@ -146,12 +147,25 @@ public class IncreaseDueActivity {
 				float tempF = Float.parseFloat(tempString);
 				if(con.ActivityStarted(ActivitySearch)&&(con.ActivityEnded(ActivitySearch)==false)){
 					con.IncreaseDue(ActivitySearch, tempF);
+					console.out("Updating the labels");
+					String [] tempData = con.getTotalActivityDue(ActivitySearch);
+					ActivityLabel.setText(tempData[0]);
+					DueLabel.setText(tempData[1]);
+				}else if(con.ActivityStarted(ActivitySearch)){
+						console.errorOut("Apparentely the activity has not yet started");
+						console.errorOut("You can only increase the amount due if an activity is currentely active");
+						console.errorOut("Sending error to user");
+						errorLabel.setText("The activity has not yet started, unable to increase amount due");
+						errorLabel.setVisible(true);
+				}else{
+					console.errorOut("Apparentely the activity has already ended");
+					console.errorOut("You can only increase the amount due if an activity is currentely active");
+					console.errorOut("Sending error to user");
+					errorLabel.setText("The activity has already ended, unable to increase amount due");
+					errorLabel.setVisible(true);	
 				}
-				console.out("Updating the labels");
-				String [] tempData = con.getTotalActivityDue(ActivitySearch);
-				ActivityLabel.setText(tempData[0]);
-				DueLabel.setText(tempData[1]);
 			}
+				
 		});
 		
 	}
