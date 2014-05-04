@@ -132,7 +132,8 @@ public class Starter {
 		Button IncreaseActivityDebtButton = new Button("Increase amount due for an activity");
 		IncreaseActivityDebtButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				console.out("Not yet implemented");
+				console.out("Attempting to open the amount due for activity window");
+				new IncreaseDueActivity(console);
 			}
 		});
 		IncreaseActivityDebtButton.setBounds(10, 217, 214, 22);
