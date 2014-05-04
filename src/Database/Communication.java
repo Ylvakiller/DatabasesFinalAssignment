@@ -404,7 +404,7 @@ public class Communication {
 	public boolean ActivityStarted(String a_name){
 		boolean started;
 		Date dbDate = this.GetDateStorredDateFormat();
-		Date acDate = null;
+		Date startDate = null;
 		
 		this.connect();
 		
@@ -414,14 +414,14 @@ public class Communication {
 			Statement getDateStatement = con.createStatement();
 			ResultSet aDate = getDateStatement.executeQuery(querry);
 			aDate.next();
-			acDate = aDate.getDate(1);
+			startDate = aDate.getDate(1);
 			aDate.close();
 		} catch (SQLException e1) {
 			console.errorOut(e1.toString());
 		}
 		this.close();
 		
-		if (dbDate.before(acDate)){
+		if (dbDate.before(startDate)){
 			started = false;
 		}else{
 			started = true;
@@ -469,4 +469,109 @@ public class Communication {
 		}
 		return temp;
 	}
+
+
+	/*
+	 * returns a string array with in the first place the activity name followed by the amount due in a float
+	 * needs an activity name, the return activity name is just as an extra check
+	 */
+	public String[] getTotalActivityDue(String a_name){
+		String[] returnString = {"null", "null", "null"};
+		console.out("Retrieving balance of " + a_name);
+		this.connect();
+		String querry = "SELECT `a_name`,`total_due` FROM `activities` WHERE (`a_name`='" + a_name + "')";
+		try{
+			Statement dataStmnt = con.createStatement();
+			ResultSet dataRss = dataStmnt.executeQuery(querry);
+			dataRss.next();
+			returnString[0] = dataRss.getString(1);
+			float tempint = dataRss.getFloat(2);
+			returnString[1] = Float.toString(tempint);
+			dataRss.close();
+			console.out("Succesfully retrieved data from database");
+		} catch (SQLException e2){
+			console.errorOut(e2.toString());
+		}
+		this.close();
+		return returnString;
+	}
+	
+	/*
+	 * Returns a true if the activity is ended
+	 */
+	public boolean ActivityEnded(String a_name){
+		boolean ended;
+		Date dbDate = this.GetDateStorredDateFormat();
+		Date endDate = null;
+		
+		this.connect();
+		
+		String querry = "SELECT `date_end` FROM `activities` WHERE (`a_name`='" + a_name + "')";
+		
+		try {
+			Statement getDateStatement = con.createStatement();
+			ResultSet aDate = getDateStatement.executeQuery(querry);
+			aDate.next();
+			endDate = aDate.getDate(1);
+			aDate.close();
+		} catch (SQLException e1) {
+			console.errorOut(e1.toString());
+		}
+		this.close();
+		
+		if (dbDate.before(endDate)){
+			ended = false;
+		}else{
+			ended = true;
+		}
+		return ended;
+	}
+
+	
+	/* returns a true if the deposit is successful
+	 * calculates the new balance of the specific name, gets the date storred in the db to use in the deposit log
+	 * uses an amount (can be both positive and negative) which is the amount that someone wants to deposit and a name to know on which account it can be deposited
+	 */
+	public boolean IncreaseDue(String a_name, float amount){
+		console.out("Calculating new balance");
+		String[] temp = this.getTotalActivityDue(a_name);
+		
+		boolean bool = false;
+		float oldDue = Float.parseFloat(temp[1]);
+		console.out("Old due is : " + oldDue);
+		float newDUe = oldDue + amount;
+		console.out("New due is : " + newDUe);
+		console.out("Obtaining date from database");
+		String date = this.GetDateStorred();
+		String querry1 = "UPDATE `activities` SET `total_due`=" + newDUe + " WHERE (`a_name`='" + a_name + "')";
+		String querry2 = "INSERT INTO dueincrease (`a_name`,`date`,`amount`)VALUES('"+ a_name + "','" + date +"','" + amount + "')";
+		console.out("Attempting to do a deposit");
+		this.connect();
+		
+		try{
+			con.setAutoCommit(false);
+			Statement stmt1 = con.prepareStatement(querry1);
+			Statement stmt2 = con.prepareStatement(querry2);
+			console.out("Setting the amount due of " + a_name + " to " + newDUe);
+			stmt1.executeUpdate(querry1);
+			console.out("Adding the increase to the increase log");
+			stmt2.executeUpdate(querry2);
+			
+			con.commit();
+			bool = true;
+			console.out("Succesfully increase the amount due of activity " + a_name + " by " + amount);
+		}catch (SQLException e2){
+			try {
+				con.rollback();
+			} catch (SQLException e) {
+				console.errorOut(e.getMessage());
+			}
+			console.errorOut(e2.toString());
+			bool = false;
+		}
+		this.close();
+		return bool;
+	}
+
+
 }
