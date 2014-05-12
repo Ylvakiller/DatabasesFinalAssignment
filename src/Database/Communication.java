@@ -477,7 +477,7 @@ public class Communication {
 	 * needs an activity name, the return activity name is just as an extra check
 	 */
 	public String[] getTotalActivityDue(String a_name){
-		String[] returnString = {"null", "null", "null"};
+		String[] returnString = {"null", "null"};
 		console.out("Retrieving balance of " + a_name);
 		this.connect();
 		String querry = "SELECT `a_name`,`total_due` FROM `activities` WHERE (`a_name`='" + a_name + "')";
@@ -574,5 +574,91 @@ public class Communication {
 		return bool;
 	}
 
+
+	/*
+	 * returns an array with all the activities that a friend with the name given in u_name 
+	 * it sorts these activities by the date that the friend was added to them in asc order, meaning the oldest one first
+	 */
+	public String[] FindActivitiesForFriend(String u_name){
+		
+		this.connect();
+		String querry = "SELECT `a_name` FROM `activitiefriends` WHERE (`u_name`='" + u_name + "') ORDER BY `date_added` ASC";
+		String[] activities = {null};
+		int i = 0;
+		try {
+			Statement ActivityFinderStmnt = con.createStatement();
+			ResultSet ActivityfinderRss = ActivityFinderStmnt.executeQuery(querry);
+			while (ActivityfinderRss.next()){
+				activities[i] = ActivityfinderRss.getString(1);
+				i++;
+			}
+			ActivityfinderRss.close();
+		} catch (SQLException e1) {
+			console.errorOut(e1.toString());
+		}
+		
+		this.close();
+		return activities;
+	}
+	
+	/*
+	 * Returns the amount of entries in the array that was given
+	 */
+	public int CountArray(String[] array){
+		int i = 0;
+		while(array[i].isEmpty()==false){
+			i++;
+		}
+		return i;
+	}
+
+
+	/*
+	 * returns the amount of friends that an activity has
+	 */
+	public int CountFriendsForActivity(String a_name){
+		int count = 0;
+		
+		this.connect();
+		String querry = "SELECT `u_name` FROM `activitiefriends` WHERE (`a_name`='" + a_name + "')";
+		try {
+			Statement FriendCounterStmnt = con.createStatement();
+			ResultSet FriendCounterRss = FriendCounterStmnt.executeQuery(querry);
+			while (FriendCounterRss.next()){
+				count++;
+			}
+			FriendCounterRss.close();
+		} catch (SQLException e1) {
+			console.errorOut(e1.toString());
+		}
+		
+		this.close();
+		
+		return count;
+	}
+
+	/*
+	 * returns a float of the amount that the friend u_name has already paid to the activity a_name
+	 */
+	public float GetAlreadyPaid(String a_name, String u_name){
+		float paid = 0;
+		
+		this.connect();
+		String querry = "SELECT `amount` FROM `payments` WHERE (`a_name`='" + a_name + "' && `u_name`='" + u_name + "')";
+		try {
+			Statement AmountPaidStmnt = con.createStatement();
+			ResultSet AmountPaidRss = AmountPaidStmnt.executeQuery(querry);
+			if(AmountPaidRss.next()){
+				paid = AmountPaidRss.getFloat(1);
+			}
+			AmountPaidRss.close();
+		} catch (SQLException e1) {
+			console.errorOut(e1.toString());
+		}
+		
+		this.close();
+		
+		return paid;
+	}
 
 }

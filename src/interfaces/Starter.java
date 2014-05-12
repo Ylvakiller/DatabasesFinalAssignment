@@ -94,7 +94,8 @@ public class Starter {
 		Button FriendDebtButton = new Button("See what a friend needs to pay");
 		FriendDebtButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				console.out("Not yet implemented");
+				console.out("Opening window to see the amount that a friend is due and for which activities");
+				new FindDueActivityForFriend(console);
 			}
 		});
 		FriendDebtButton.setBounds(10, 129, 214, 22);
