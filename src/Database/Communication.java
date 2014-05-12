@@ -611,4 +611,54 @@ public class Communication {
 		}
 		return i;
 	}
+
+
+	/*
+	 * returns the amount of friends that an activity has
+	 */
+	public int CountFriendsForActivity(String a_name){
+		int count = 0;
+		
+		this.connect();
+		String querry = "SELECT `u_name` FROM `activitiefriends` WHERE (`a_name`='" + a_name + "')";
+		try {
+			Statement FriendCounterStmnt = con.createStatement();
+			ResultSet FriendCounterRss = FriendCounterStmnt.executeQuery(querry);
+			while (FriendCounterRss.next()){
+				count++;
+			}
+			FriendCounterRss.close();
+		} catch (SQLException e1) {
+			console.errorOut(e1.toString());
+		}
+		
+		this.close();
+		
+		return count;
+	}
+
+	/*
+	 * returns a float of the amount that the friend u_name has already paid to the activity a_name
+	 */
+	public float GetAlreadyPaid(String a_name, String u_name){
+		float paid = 0;
+		
+		this.connect();
+		String querry = "SELECT `amount` FROM `payments` WHERE (`a_name`='" + a_name + "' && `u_name`='" + u_name + "')";
+		try {
+			Statement AmountPaidStmnt = con.createStatement();
+			ResultSet AmountPaidRss = AmountPaidStmnt.executeQuery(querry);
+			if(AmountPaidRss.next()){
+				paid = AmountPaidRss.getFloat(1);
+			}
+			AmountPaidRss.close();
+		} catch (SQLException e1) {
+			console.errorOut(e1.toString());
+		}
+		
+		this.close();
+		
+		return paid;
+	}
+
 }
