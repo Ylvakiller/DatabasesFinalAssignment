@@ -64,6 +64,7 @@ public class FindDueActivityForFriend {
 						console.out("this friend is participating in " + con.CountArray(temp) + " activites");
 					}
 					int i = 0;
+					float totalDue= 0;
 					while(temp[i].isEmpty()==false){
 						String[] totalDueString = con.getTotalActivityDue(temp[i]);
 						float totalDueFloat = Float.parseFloat(totalDueString[1]);
@@ -78,9 +79,12 @@ public class FindDueActivityForFriend {
 							console.errorOut("This means that each friend has to pay " + duePerFriend);
 							console.errorOut(FriendSearch + " however has paid + " + amountPaid);
 							console.errorOut("This means that he has paid " + tempDue + " to much...");
+						}else{
+							totalDue = totalDue + tempDue;
 						}
-						outPutArea.append("Activity: " + temp[i] + "      Due: " + tempDue);
+						outPutArea.append("Activity: " + temp[i] + "      Due: " + tempDue + "\n");
 					}
+					outPutArea.append("Total amount due = " + totalDue + "\n");
 					
 				}
 			}
