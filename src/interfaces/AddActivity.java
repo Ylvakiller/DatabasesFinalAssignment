@@ -64,16 +64,16 @@ public class AddActivity {
 		jf.getContentPane().add(lblEndDate);
 		
 		final JXDatePicker datePicker = new JXDatePicker();
-		datePicker.setBounds(89, 78, 112, 22);
+		datePicker.setBounds(89, 78, 174, 22);
 		jf.getContentPane().add(datePicker);
 		
 		final JXDatePicker datePicker_1 = new JXDatePicker();
-		datePicker_1.setBounds(89, 108, 112, 22);
+		datePicker_1.setBounds(89, 108, 174, 22);
 		jf.getContentPane().add(datePicker_1);
 		
 		final JXTextField textField = new JXTextField();
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		textField.setBounds(89, 48, 112, 22);
+		textField.setBounds(89, 48, 174, 22);
 		jf.getContentPane().add(textField);
 		
 		final JXLabel ErrorLbl = new JXLabel();

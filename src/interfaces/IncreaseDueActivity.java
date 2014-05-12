@@ -51,7 +51,7 @@ public class IncreaseDueActivity {
 		jf.getContentPane().add(ActivityField);
 		
 		final JLabel errorLabel = new JLabel("Activity not found, please enter a correct name!");
-		errorLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		errorLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 		errorLabel.setBounds(11, 198, 329, 14);
 		jf.getContentPane().add(errorLabel);
 		errorLabel.setVisible(false);
@@ -140,7 +140,8 @@ public class IncreaseDueActivity {
 				String tempString = DueField.getText();
 				int tempInt1 = 0;
 				tempInt1 = tempString.indexOf(".");
-				if ((tempInt1+3)<tempString.length()){
+				if ((tempInt1+3)<tempString.length()&&tempInt1!=-1){
+					console.out("tempInt1 = " + Integer.toString(tempInt1));
 					tempString = tempString.substring(0, (tempInt1 + 3));
 				}
 				console.out("tempString is : " + tempString);

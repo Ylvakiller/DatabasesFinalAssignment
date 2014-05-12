@@ -435,6 +435,7 @@ public class Communication {
 	public boolean AddFriendToActivity(String u_name, String a_name){
 		int linesChanged= 0;
 		String querry = "INSERT INTO activitiefriends (`a_name`,`u_name`,`date_added`)VALUES('"+ a_name + "','" + u_name +"','" + this.GetDateStorredDateFormat() + "')";
+		this.connect();
 		try{
 			Statement addFriendStmt = con.createStatement();
 			linesChanged = addFriendStmt.executeUpdate(querry);

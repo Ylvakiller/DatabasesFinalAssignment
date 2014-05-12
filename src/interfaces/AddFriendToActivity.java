@@ -47,6 +47,8 @@ public class AddFriendToActivity {
 				console.out("Attempting to add this friend to this activity");
 				if (con.AddFriendToActivity(name, activity)){
 					console.out("Friend succesfull added to activity");
+					errorLabel.setText("Added friend to this activity");
+					errorLabel.setVisible(true);
 				}else{
 					console.errorOut("Something went wrong, nooooo");
 					errorLabel.setText("Something went wrong, check the console for details");
