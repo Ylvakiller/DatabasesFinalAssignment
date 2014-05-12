@@ -7,6 +7,8 @@ import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 /*
  * Opens the console and provides some methods for other classes.
@@ -21,11 +23,18 @@ public class Console {
 		date = new Date();
 		
 		jf = new JFrame("Database assignment Console");
+		final JScrollPane scrollPane = new JScrollPane();
+		jf.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent arg0) {
+				scrollPane.setBounds(0, 0, (jf.getWidth()-16), (jf.getHeight()-36));
+			}
+		});
 		jf.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		jf.getContentPane().setLayout(null);
 		jf.setSize(730,396);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		
 		scrollPane.setBounds(0, 0, 714, 358);
 		jf.getContentPane().add(scrollPane);
 		OutputArea = new JTextArea();
