@@ -577,11 +577,12 @@ public class Communication {
 
 	/*
 	 * returns an array with all the activities that a friend with the name given in u_name 
+	 * it sorts these activities by the date that the friend was added to them
 	 */
 	public String[] FindActivitiesForFriend(String u_name){
 		
 		this.connect();
-		String querry = "SELECT `a_name` FROM `activitiefriends` WHERE (`u_name`='" + u_name + "')";
+		String querry = "SELECT `a_name` FROM `activitiefriends` WHERE (`u_name`='" + u_name + "') ORDER BY `date_added` ASC";
 		String[] activities = {null};
 		int i = 0;
 		try {
