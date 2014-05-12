@@ -477,7 +477,7 @@ public class Communication {
 	 * needs an activity name, the return activity name is just as an extra check
 	 */
 	public String[] getTotalActivityDue(String a_name){
-		String[] returnString = {"null", "null", "null"};
+		String[] returnString = {"null", "null"};
 		console.out("Retrieving balance of " + a_name);
 		this.connect();
 		String querry = "SELECT `a_name`,`total_due` FROM `activities` WHERE (`a_name`='" + a_name + "')";
@@ -575,4 +575,39 @@ public class Communication {
 	}
 
 
+	/*
+	 * returns an array with all the activities that a friend with the name given in u_name 
+	 */
+	public String[] FindActivitiesForFriend(String u_name){
+		
+		this.connect();
+		String querry = "SELECT `a_name` FROM `activitiefriends` WHERE (`u_name`='" + u_name + "')";
+		String[] activities = {null};
+		int i = 0;
+		try {
+			Statement ActivityFinderStmnt = con.createStatement();
+			ResultSet ActivityfinderRss = ActivityFinderStmnt.executeQuery(querry);
+			while (ActivityfinderRss.next()){
+				activities[i] = ActivityfinderRss.getString(1);
+				i++;
+			}
+			ActivityfinderRss.close();
+		} catch (SQLException e1) {
+			console.errorOut(e1.toString());
+		}
+		
+		this.close();
+		return activities;
+	}
+	
+	/*
+	 * Returns the amount of entries in the array that was given
+	 */
+	public int CountArray(String[] array){
+		int i = 0;
+		while(array[i].isEmpty()==false){
+			i++;
+		}
+		return i;
+	}
 }
