@@ -577,7 +577,7 @@ public class Communication {
 
 	/*
 	 * returns an array with all the activities that a friend with the name given in u_name 
-	 * it sorts these activities by the date that the friend was added to them
+	 * it sorts these activities by the date that the friend was added to them in asc order, meaning the oldest one first
 	 */
 	public String[] FindActivitiesForFriend(String u_name){
 		
