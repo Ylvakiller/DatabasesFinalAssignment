@@ -606,7 +606,7 @@ public class Communication {
 	 */
 	public int CountArray(String[] array){
 		int i = 0;
-		while(array[i].isEmpty()==false){
+		while(array[i]==null){
 			i++;
 		}
 		return i;

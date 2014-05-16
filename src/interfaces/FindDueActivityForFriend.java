@@ -26,8 +26,12 @@ public class FindDueActivityForFriend {
 	
 	public FindDueActivityForFriend(Console Console){
 		console = Console;
+		con = new Communication(console);
+		
+		FriendSearch = "";
 		jf = new JFrame("Database assignment");
 		jf.getContentPane().setLayout(null);
+		jf.setSize(345, 315);
 		console.out("Opened the findDueForFriend screen");
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -54,6 +58,8 @@ public class FindDueActivityForFriend {
 			public void actionPerformed(ActionEvent arg0) {
 				FriendSearch = friendSearchField.getText();
 				console.out("Searching for the name that was entered");
+				console.out("FriendSearch variable is: " + FriendSearch);
+				
 				if(con.GetNameExcists(FriendSearch)){
 					console.out("Friend does indeed excist");
 					console.out("Attempting to find out the amount of activities that this friend is a part of");
@@ -86,6 +92,8 @@ public class FindDueActivityForFriend {
 					}
 					outPutArea.append("Total amount due = " + totalDue + "\n");
 					
+				}else{
+					console.errorOut("Name doesn't excist?");
 				}
 			}
 		});
