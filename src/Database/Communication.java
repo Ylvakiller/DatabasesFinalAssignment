@@ -488,6 +488,9 @@ public class Communication {
 			returnString[0] = dataRss.getString(1);
 			float tempint = dataRss.getFloat(2);
 			returnString[1] = Float.toString(tempint);
+			if (returnString[1] == null){
+				returnString[1] = "0";
+			}
 			dataRss.close();
 			console.out("Succesfully retrieved data from database");
 		} catch (SQLException e2){
@@ -601,16 +604,6 @@ public class Communication {
 		return activities;
 	}
 	
-	/*
-	 * Returns the amount of entries in the array that was given
-	 */
-	public int CountArray(String[] array){
-		int i = 0;
-		while(array[i]==null){
-			i++;
-		}
-		return i;
-	}
 
 
 	/*

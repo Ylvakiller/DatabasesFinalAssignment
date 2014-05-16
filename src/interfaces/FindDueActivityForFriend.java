@@ -56,44 +56,49 @@ public class FindDueActivityForFriend {
 		Button friendSearchButton = new Button("Search");
 		friendSearchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				console.out("Clearing the textfield to make sure any old records are not shown");
+				outPutArea.setText("");
 				FriendSearch = friendSearchField.getText();
 				console.out("Searching for the name that was entered");
-				console.out("FriendSearch variable is: " + FriendSearch);
 				
 				if(con.GetNameExcists(FriendSearch)){
 					console.out("Friend does indeed excist");
 					console.out("Attempting to find out the amount of activities that this friend is a part of");
 					String[] temp = con.FindActivitiesForFriend(FriendSearch);
-					if (con.CountArray(temp)==0){
+					if (temp.length==0){
 						console.errorOut("This friend is not part of any activities....");
+						outPutArea.append("Friend is not participating in any activities");
 					}else{
-						console.out("this friend is participating in " + con.CountArray(temp) + " activites");
-					}
-					int i = 0;
-					float totalDue= 0;
-					while(temp[i].isEmpty()==false){
-						String[] totalDueString = con.getTotalActivityDue(temp[i]);
-						float totalDueFloat = Float.parseFloat(totalDueString[1]);
-						int amountOfFriends = con.CountFriendsForActivity(temp[i]);
-						float duePerFriend = totalDueFloat/amountOfFriends;
-						float amountPaid = con.GetAlreadyPaid(temp[i], FriendSearch);
-						float tempDue = duePerFriend-amountPaid;
-						if(tempDue<0){
-							console.errorOut("It seems that for the activity "+ temp[i] + " the friend " + FriendSearch + " has paid more than each friend is suppossed to pay");
-							console.errorOut("The total amount due for the activity " + temp[i] + " is " + Float.toString(totalDueFloat));
-							console.errorOut("The activity " + temp[i] + " has a total of " + amountOfFriends + " friends");
-							console.errorOut("This means that each friend has to pay " + duePerFriend);
-							console.errorOut(FriendSearch + " however has paid + " + amountPaid);
-							console.errorOut("This means that he has paid " + tempDue + " to much...");
-						}else{
-							totalDue = totalDue + tempDue;
+						console.out("this friend is participating in " + temp.length + " activites");
+						int i = 0;
+						float totalDue= 0;
+						while(i<temp.length){
+							String[] totalDueString = con.getTotalActivityDue(temp[i]);
+							float totalDueFloat = Float.parseFloat(totalDueString[1]);
+							int amountOfFriends = con.CountFriendsForActivity(temp[i]);
+							float duePerFriend = totalDueFloat/amountOfFriends;
+							float amountPaid = con.GetAlreadyPaid(temp[i], FriendSearch);
+							float tempDue = duePerFriend-amountPaid;
+							if(tempDue<0){
+								console.errorOut("It seems that for the activity "+ temp[i] + " the friend " + FriendSearch + " has paid more than each friend is suppossed to pay");
+								console.errorOut("The total amount due for the activity " + temp[i] + " is " + Float.toString(totalDueFloat));
+								console.errorOut("The activity " + temp[i] + " has a total of " + amountOfFriends + " friends");
+								console.errorOut("This means that each friend has to pay " + duePerFriend);
+								console.errorOut(FriendSearch + " however has paid + " + amountPaid);
+								console.errorOut("This means that he has paid " + tempDue + " to much...");
+							}else{
+								totalDue = totalDue + tempDue;
+							}
+							outPutArea.append("Activity: " + temp[i] + "      Due: " + tempDue + "\n");
+							i++;
 						}
-						outPutArea.append("Activity: " + temp[i] + "      Due: " + tempDue + "\n");
+						outPutArea.append("Total amount due = " + totalDue + "\n");
 					}
-					outPutArea.append("Total amount due = " + totalDue + "\n");
+					
 					
 				}else{
 					console.errorOut("Name doesn't excist?");
+					outPutArea.append("Name not found.");
 				}
 			}
 		});
